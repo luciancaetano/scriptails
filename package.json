@@ -1,5 +1,5 @@
 {
-  "name": "scriptmize",
+  "name": "scriptmizer",
   "version": "0.5.1",
   "description": "Eazy script runner",
   "main": "dist/index.cjs.js",
