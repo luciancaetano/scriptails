@@ -1,25 +1,25 @@
-# Scriptmize
+# Scriptmizer
 
 **Attention: This is a package under development, some bugs can be found**
 **This is a Working in Progress Project**
 
-Scriptmize is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
+Scriptmizer is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
 
-## Why use Scriptmize?
-You might want to use Scriptmize if:
+## Why use Scriptmizer?
+You might want to use Scriptmizer if:
 - You need to build some advanced scripts to perform repetitive tasks on your project.
 - You have a complex deployment process and you need to simplify this.
 - You want to automate some things.
 
 ## Quick Start
-    `npm i -D scriptmize`
+    `npm i -D scriptmizer`
     or
-    `yarn add scriptmize`.
+    `yarn add scriptmizer`.
 
 Create a script folder (choose the name you want) and put an index(.ts or .js) file.
 
 ```javascript
-    import { runScripts } from 'scriptmize';
+    import { runScripts } from 'scriptmizer';
     // Import scripts here
     import './simpleLS';
 
@@ -33,7 +33,7 @@ The structure of the scripts was inspired by the unit testing framework like moc
 ```javascript
 import {
     command, option, onAction, sm,
-} from 'scriptmize';
+} from 'scriptmizer';
 command('build <platform>', () => {
     option('--debug', 'Build debug apk', false);
 
