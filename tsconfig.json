@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "./dist/",
+    "strict": true,
+    "skipLibCheck": false,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "types": [
+      "@types/node"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*",
+    "./examples/**/*",
+    "./lib/**/*"
+  ]
+}
