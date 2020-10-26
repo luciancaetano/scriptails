@@ -1,6 +1,6 @@
 {
   "name": "scriptmizer",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Eazy script runner",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

@@ -7,9 +7,22 @@ const readLineInterface = readline.createInterface({
 });
 
 export interface PromptOptions {
+    /**
+     * Allow empty responses
+     * @note if defaultValue is set allowEmpty will be useless
+     */
     allowEmpty?: boolean;
+    /**
+     * Prompt hint text
+     */
     hint?: string;
+    /**
+     * Default value, if is not set empty answers be prompted again
+     */
     defaultValue?: string;
+    /**
+     * Primpt intent, like dang be red
+     */
     intent?: 'danger' | 'success' | 'warning' | 'info';
 }
 
@@ -27,7 +40,12 @@ function parseIntent(intent: 'danger' | 'success' | 'warning' | 'info' | undefin
     }
 }
 
-export async function prompt(question: string, options: PromptOptions = {}): Promise<string> {
+/**
+ * Displays a message and waits for a response from the user.
+ * @param question the question text
+ * @param options PromptOptions
+ */
+export async function prompt(question: string, options: PromptOptions = {}): Promise<string | null> {
     let questionText = parseIntent(options.intent, question);
 
     if (options.hint) {
@@ -42,6 +60,10 @@ export async function prompt(question: string, options: PromptOptions = {}): Pro
 
     if (options.defaultValue) {
         return options.defaultValue;
+    }
+
+    if (options.allowEmpty) {
+        return null;
     }
 
     return prompt(question, options);
