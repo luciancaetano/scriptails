@@ -27,6 +27,20 @@ Create a script folder (choose the name you want) and put an index(.ts or .js) f
     runScripts(process.argv);
 ```
 
+### Link scripts (Generate ".bin")
+Npm can link your binaries declared in `package.json` in bin attr,
+you can provide a custom command name and a path to your scriptStart file **(the file that runs runScripts)**
+```json
+    ....
+    "bin": {
+        "your-awesome-script-name": "./scripts/index.ts"
+    },
+  ...
+```
+
+If your code is in **javascript** you just add `"#!/usr/bin/env node"` at start of your scriptStart file or `"#!/usr/bin/env ts-node-script"` if is typescript and install ts-node and typescript in your project.
+
+
 ## Scripts
 The structure of the scripts was inspired by the unit testing framework like mocha, see an example below
 
