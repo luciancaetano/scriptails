@@ -12,9 +12,9 @@ You might want to use Scriptmizer if:
 - You want to automate some things.
 
 ## Quick Start
-    `npm i -D scriptmizer`
+    npm i -D scriptmizer
     or
-    `yarn add scriptmizer`.
+    yarn add scriptmizer
 
 Create a script folder (choose the name you want) and put an index(.ts or .js) file.
 

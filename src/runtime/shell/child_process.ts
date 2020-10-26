@@ -1,6 +1,6 @@
 import * as childProcess from 'child_process';
 import * as chalk from 'chalk';
-import { get } from 'lodash';
+import { isBoolean } from 'lodash';
 import * as program from 'commander';
 import { ShellExecResult } from '../types';
 import { exitError, log } from '../utils';
@@ -44,7 +44,7 @@ interface ShellExecExtendedOptions {
          * Show error log
          */
         error: boolean;
-    }
+    } | boolean;
 }
 
 export interface ShellExecOptions extends childProcess.ExecOptions, ShellExecExtendedOptions {
@@ -60,17 +60,27 @@ export interface ShellExecFileOptions extends childProcess.ExecFileOptions, Shel
  * @returns ShellExecResult
  */
 export const shellExec = (command: string, opt?: ShellExecOptions | null) => new Promise<ShellExecResult>((resolve, reject) => {
-    const opts = {
+    const opts: any = {
         ...opt || {},
-        log: {
+    };
+
+    if (opt?.log && isBoolean(opt.log)) {
+        opts.log = {
+            start: opt.log,
+            end: opt.log,
+            stderr: opt.log,
+            stdout: opt.log,
+            error: opt.log,
+        };
+    } else if (opt?.log) {
+        opts.log = {
             start: true,
             end: true,
             stderr: true,
             stdout: true,
             error: true,
-            ...get(opt, 'log', {}),
-        },
-    };
+        };
+    }
 
     if (opts.log.start) {
         log(`${chalk.bgGreen.white.bold(' EXEC ')} runing command ${chalk.green(`"${command}"`)}`);
@@ -116,17 +126,27 @@ export const shellExec = (command: string, opt?: ShellExecOptions | null) => new
  * @returns ShellExecResult
  */
 export const shellExecFile = (command: string, args: ReadonlyArray<string> | undefined | null = null, opt?: ShellExecFileOptions | null) => new Promise<ShellExecResult>((resolve, reject) => {
-    const opts = {
+    const opts: any = {
         ...opt || {},
-        log: {
+    };
+
+    if (opt?.log && isBoolean(opt.log)) {
+        opts.log = {
+            start: opt.log,
+            end: opt.log,
+            stderr: opt.log,
+            stdout: opt.log,
+            error: opt.log,
+        };
+    } else if (opt?.log) {
+        opts.log = {
             start: true,
             end: true,
             stderr: true,
             stdout: true,
             error: true,
-            ...get(opt, 'log', {}),
-        },
-    };
+        };
+    }
 
     if (opts.log.start) {
         log(`${chalk.bgGreen.white.bold(' EXEC FILE ')} runing command ${chalk.green(`"${command}"`)}`);
