@@ -12,10 +12,11 @@ export class ScriptContextError extends Error {
  * Run scripts
  *
  * @param arvg              string[]     process.argv
+ * @param name              string       name EX: my-script
  * @param description       string
  * @param argsDescription   Object
  */
-export async function runScripts(argv: string[], description?: string, argsDescription?: {[argName: string]: string}) {
+export async function runScripts(argv: string[], name: string, description?: string, argsDescription?: {[argName: string]: string}) {
     const promiseQueue = ScriptContext.getInstance().getPromiseQueue();
 
     // eslint-disable-next-line
@@ -33,6 +34,7 @@ export async function runScripts(argv: string[], description?: string, argsDescr
                     .parse(argv);
             }
 
+            commander.name(name);
             resolve();
         } catch (e) {
             reject(e);
