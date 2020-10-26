@@ -1,17 +1,11 @@
 import * as chalk from 'chalk';
 import * as readline from 'readline';
+import { PromptOptions } from '../types';
 
 const readLineInterface = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
-
-export interface PromptOptions {
-    allowEmpty?: boolean;
-    hint?: string;
-    defaultValue?: string;
-    intent?: 'danger' | 'success' | 'warning' | 'info';
-}
 
 function parseIntent(intent: 'danger' | 'success' | 'warning' | 'info' | undefined, message: string) {
     switch (intent) {
@@ -27,11 +21,17 @@ function parseIntent(intent: 'danger' | 'success' | 'warning' | 'info' | undefin
     }
 }
 
-export async function prompt(question: string, options: PromptOptions = {}): Promise<string> {
-    let questionText = parseIntent(options.intent, question);
+/**
+ * Displays a message and waits for a response from the user.
+ * For more advanced features use https://www.npmjs.com/package/prompts
+ * @param question the question text
+ * @param settings PromptOptions
+ */
+export async function prompt(question: string, settings: PromptOptions = {}): Promise<string | null> {
+    let questionText = parseIntent(settings.intent, question);
 
-    if (options.hint) {
-        questionText = `${questionText} ${chalk.dim(`(${options.hint})`)}`;
+    if (settings.hint) {
+        questionText = `${questionText} ${chalk.dim(`(${settings.hint})`)}`;
     }
 
     const answer: string = await new Promise((resolve) => readLineInterface.question(questionText, resolve));
@@ -40,9 +40,13 @@ export async function prompt(question: string, options: PromptOptions = {}): Pro
         return answer;
     }
 
-    if (options.defaultValue) {
-        return options.defaultValue;
+    if (settings.defaultValue) {
+        return settings.defaultValue;
     }
 
-    return prompt(question, options);
+    if (settings.allowEmpty) {
+        return null;
+    }
+
+    return prompt(question, settings);
 }

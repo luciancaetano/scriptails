@@ -10,6 +10,7 @@ export class ScriptContextError extends Error {
 
 /**
  * Run scripts
+ *
  * @param arvg              string[]     process.argv
  * @param description       string
  * @param argsDescription   Object
@@ -81,6 +82,9 @@ export async function runScripts(argv: string[], description?: string, argsDescr
  *     // optional argument
  *     option('-c, --cheese [type]', 'add cheese [marble]');
  *
+ * @param flags string
+ * @param description string
+ * @param defaultValue string|boolean
  */
 export function option(flags: string, description?: string, defaultValue?: string | boolean) {
     const cmd = ScriptContext.getInstance().getCommand();
@@ -97,6 +101,9 @@ export function option(flags: string, description?: string, defaultValue?: strin
  * the option must be specified on the command line. (Otherwise the same as .option().)
  *
  * The `flags` string should contain both the short and long flags, separated by comma, a pipe or space.
+ *
+ * @param flags string
+ * @param description :string
  */
 export function requiredOption(flags: string, description?: string) {
     const cmd = ScriptContext.getInstance().getCommand();
@@ -111,8 +118,9 @@ export function requiredOption(flags: string, description?: string) {
 /**
  * Define a command, implemented using an action handler.
  *
- * @param nameAndArgs - command name and arguments, args are  `<required>` or `[optional]` and last may also be `variadic...`
- * @returns new command
+ * @param nameAndArgs string - command name and arguments, args are  `<required>` or `[optional]` and last may also be `variadic...`
+ * @param context ScriptContextCallback
+ * @param hidden false
  */
 export async function command(nameAndArgs: string, context: ScriptContextCallback, hidden = false) {
     ScriptContext.getInstance().pushCommandPromise(() => new Promise<void>((resolve, reject) => {
@@ -136,8 +144,8 @@ export async function command(nameAndArgs: string, context: ScriptContextCallbac
 /**
  * Define a command, implemented using an action handler.
  *
- * @param args - arguments, args are  `<required>` or `[optional]` and last may also be `variadic...`
- * @returns new command
+ * @param cmdArgs string arguments, args are  `<required>` or `[optional]` and last may also be `variadic...`
+ * @param context ScriptContextCallback
  */
 export async function defaultCommand(cmdArgs: string, context: ScriptContextCallback) {
     ScriptContext.getInstance().pushCommandPromise(() => new Promise<void>((resolve, reject) => {
@@ -162,6 +170,8 @@ export async function defaultCommand(cmdArgs: string, context: ScriptContextCall
  * Set an alias for the command.
  *
  * You may call more than once to add multiple aliases. Only the first alias is shown in the auto-generated help.
+ *
+ * @param alias
  */
 export function commandAlias(alias: string | string[]) {
     ScriptContext.getInstance().requiresCommandContext('commandAlias');
@@ -180,6 +190,8 @@ export function commandAlias(alias: string | string[]) {
 /**
  * Set the description.
  *
+ * @param str string
+ * @param argsDescription :{[argName:string]:string}
  */
 export function commandDescription(str: string, argsDescription?: {[argName: string]: string}) {
     ScriptContext.getInstance().requiresCommandContext('commandAlias');
@@ -195,6 +207,8 @@ export function commandDescription(str: string, argsDescription?: {[argName: str
  * Define argument syntax for command.
  *
  * Ex: arguments('<cmd> [env]')
+ *
+ * @param desc string
  */
 export function args(desc: string) {
     ScriptContext.getInstance().requiresCommandContext('args');
@@ -209,6 +223,7 @@ export function args(desc: string) {
 /**
  * Set the command usage.
  *
+ * @param text string
  */
 export function usage(text: string) {
     ScriptContext.getInstance().requiresCommandContext('args');
@@ -227,6 +242,7 @@ export function usage(text: string) {
  *      onAction(async (arg1, arg2) => {
  *           // output help here
  *      });
+ * @param callBack ActionContextCallback
  */
 export function onAction(callBack: ActionContextCallback) {
     ScriptContext.getInstance().requiresCommandContext('onAction');

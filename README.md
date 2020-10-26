@@ -1,7 +1,6 @@
 # Scriptmizer
 
 **Attention: This is a package under development, some bugs can be found**
-**This is a Working in Progress Project**
 
 Scriptmizer is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
 
@@ -21,11 +20,25 @@ Create a script folder (choose the name you want) and put an index(.ts or .js) f
 ```javascript
     import { runScripts } from 'scriptmizer';
     // Import scripts here
-    import './simpleLS';
+    import './my-command';
 
     // You must import the scripts before call runScripts
     runScripts(process.argv);
 ```
+
+### Link scripts (Generate ".bin")
+Npm can link your binaries declared in `package.json` in bin attr,
+you can provide a custom command name and a path to your scriptStart file **(the file that runs runScripts)**
+```json
+    ....
+    "bin": {
+        "your-awesome-script-name": "./scripts/index.ts"
+    },
+  ...
+```
+
+If your code is in **javascript** you just add `"#!/usr/bin/env node"` at start of your scriptStart file or `"#!/usr/bin/env ts-node-script"` if is typescript and install ts-node and typescript in your project.
+
 
 ## Scripts
 The structure of the scripts was inspired by the unit testing framework like mocha, see an example below
@@ -55,6 +68,9 @@ command('build <platform>', () => {
 });
 ```
 
+## Demonstrations
+You can see more demonstrations and examples in https://github.com/luciancaetano/scriptmizer-examples
+
 ## Recommended libraries
 
 - **Inquirer.js**: A collection of common interactive command line user interfaces.
@@ -62,3 +78,4 @@ command('build <platform>', () => {
 - **cli-table**: Pretty unicode tables for the CLI with Node.JS.
 - **chalk**: Terminal string styling done right.
 - **figlet.js**: A FIG Driver written in JavaScript which aims to fully implement the FIGfont spec.
+- **prompts**: Lightweight, beautiful and user-friendly interactive prompts

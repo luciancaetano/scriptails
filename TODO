@@ -1,0 +1,7 @@
+
+☐ New Planed Features
+    ✔ Improve docjs comments @done(20-10-26 19:03)
+    ✘ Implement "promptOption" Displays a message to the user and asks them to select one of the options @cancelled(20-10-26 19:33) recomended use of https://www.npmjs.com/package/prompts
+    ✘ Implement "promptCheckList" Displays a message to the user and asks them to check options @cancelled(20-10-26 19:33) recomended use of https://www.npmjs.com/package/prompts
+    ✔ Improve getting-started doc @done(20-10-26 20:30)
+    ✔ Add executable name option to runScripts @done(20-10-26 20:41)
