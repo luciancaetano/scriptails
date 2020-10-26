@@ -1,7 +1,6 @@
 # Scriptmizer
 
 **Attention: This is a package under development, some bugs can be found**
-**This is a Working in Progress Project**
 
 Scriptmizer is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
 
@@ -21,7 +20,7 @@ Create a script folder (choose the name you want) and put an index(.ts or .js) f
 ```javascript
     import { runScripts } from 'scriptmizer';
     // Import scripts here
-    import './simpleLS';
+    import './my-command';
 
     // You must import the scripts before call runScripts
     runScripts(process.argv);
@@ -68,6 +67,9 @@ command('build <platform>', () => {
     });
 });
 ```
+
+## Demonstrations
+You can see more demonstrations and examples in https://github.com/luciancaetano/scriptmizer-examples
 
 ## Recommended libraries
 
