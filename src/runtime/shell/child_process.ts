@@ -1,6 +1,6 @@
 import * as childProcess from 'child_process';
 import * as chalk from 'chalk';
-import { get, isBoolean } from 'lodash';
+import { get, isBoolean, isObject } from 'lodash';
 import * as program from 'commander';
 import { ShellExecResult } from '../types';
 import { exitError, log } from '../utils';
@@ -72,7 +72,15 @@ export const shellExec = (command: string, opt?: ShellExecOptions | null) => new
             stdout: opt.log,
             error: opt.log,
         };
-    } else if (opt?.log) {
+    } else if (opt?.log && isObject(opt?.log)) {
+        opts.log = {
+            start: get(opts, ['log', 'start'], true),
+            end: get(opts, ['log', 'end'], true),
+            stderr: get(opts, ['log', 'stderr'], true),
+            stdout: get(opts, ['log', 'stdout'], true),
+            error: get(opts, ['log', 'error'], true),
+        };
+    } else {
         opts.log = {
             start: true,
             end: true,
@@ -88,7 +96,7 @@ export const shellExec = (command: string, opt?: ShellExecOptions | null) => new
 
     const child = childProcess.exec(command, opts, (error: childProcess.ExecException | null, stdout: string | Buffer, stderr: string | Buffer) => {
         if (error) {
-            if (opts.log.error) {
+            if (get(opts, ['log', 'error'])) {
                 exitError(`${chalk.bgRed.white.bold(' EXEC ')} falied to execute command ${chalk.yellow(`"${command}"`)}`, false);
             }
             const outError = new ShellExecException(error.message, stdout, stderr);
@@ -100,18 +108,18 @@ export const shellExec = (command: string, opt?: ShellExecOptions | null) => new
                 stdout,
             });
 
-            if (opts.log.end) {
+            if (get(opts, ['log', 'end'])) {
                 log(`${chalk.bgGreen.white.bold(' EXEC ')} command ${chalk.green(`"${command}"`)} executed with success`);
             }
         }
     });
 
-    if (child.stdout && opts.log.stdout && !isSilent()) {
+    if (child.stdout && get(opts, ['log', 'stdout']) && !isSilent()) {
         child.stdout.on('data', (data) => {
             process.stdout.write(data);
         });
     }
-    if (child.stderr && opts.log.stderr && !isSilent()) {
+    if (child.stderr && get(opts, ['log', 'stderr']) && !isSilent()) {
         child.stderr.on('data', (data) => {
             process.stdout.write(data);
         });
@@ -138,7 +146,15 @@ export const shellExecFile = (command: string, args: ReadonlyArray<string> | und
             stdout: opt.log,
             error: opt.log,
         };
-    } else if (opt?.log) {
+    } else if (opt?.log && isObject(opt?.log)) {
+        opts.log = {
+            start: get(opts, ['log', 'start'], true),
+            end: get(opts, ['log', 'end'], true),
+            stderr: get(opts, ['log', 'stderr'], true),
+            stdout: get(opts, ['log', 'stdout'], true),
+            error: get(opts, ['log', 'error'], true),
+        };
+    } else {
         opts.log = {
             start: true,
             end: true,
@@ -157,7 +173,7 @@ export const shellExecFile = (command: string, args: ReadonlyArray<string> | und
             const outError = new ShellExecException(error.message, stdout, stderr);
             outError.stack = error.stack;
             reject(outError);
-            if (opts.log.error) {
+            if (get(opts, ['log', 'error'])) {
                 log(`${chalk.bgRed.white.bold(' EXEC FILE ')} falied to execute command ${chalk.yellow(`"${command}"`)}`, false);
             }
         } else {
@@ -166,18 +182,18 @@ export const shellExecFile = (command: string, args: ReadonlyArray<string> | und
                 stdout,
             });
 
-            if (opts.log.end) {
+            if (get(opts, ['log', 'end'])) {
                 log(`${chalk.bgGreen.white.bold(' EXEC FILE ')} command ${chalk.green(`"${command}"`)} executed with success`);
             }
         }
     });
 
-    if (child.stdout && opts.log.stdout && !isSilent()) {
+    if (child.stdout && get(opts, ['log', 'stdout']) && !isSilent()) {
         child.stdout.on('data', (data) => {
             process.stdout.write(data);
         });
     }
-    if (child.stderr && opts.log.stderr && !isSilent()) {
+    if (child.stderr && get(opts, ['log', 'stderr']) && !isSilent()) {
         child.stderr.on('data', (data) => {
             process.stdout.write(data);
         });
