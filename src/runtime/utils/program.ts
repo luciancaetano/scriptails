@@ -22,7 +22,7 @@ export function exitError(message: string | Error, label = true) {
  * @param {string|boolean|null} defaultValue
  */
 export function getOption(name: string, defaultValue: string | boolean | null = null) {
-    return new MixedType(get(ScriptContext.getInstance().getCurrentRunningCommand()?.opts(), name, defaultValue) || defaultValue);
+    return new MixedType(get(ScriptContext.getInstance().getCurrentRunningCommand(), name, defaultValue) || defaultValue);
 }
 
 /**
@@ -30,5 +30,5 @@ export function getOption(name: string, defaultValue: string | boolean | null = 
  * @returns {Object}
  */
 export function getOptions() {
-    return ScriptContext.getInstance().getCurrentRunningCommand()?.opts();
+    return ScriptContext.getInstance().getCurrentRunningCommand();
 }
