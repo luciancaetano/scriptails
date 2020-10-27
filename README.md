@@ -4,7 +4,7 @@
 
 Scriptmizer is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
 
-**This project is under development and you may found bugs pleaze report them to https://github.com/luciancaetano/scriptmizer/issues**
+**This project is under development and you may found bugs please report them to https://github.com/luciancaetano/scriptmizer/issues**
 
 ## Why use Scriptmizer?
 You might want to use Scriptmizer if:
