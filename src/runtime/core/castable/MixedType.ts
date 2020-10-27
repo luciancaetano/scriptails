@@ -14,7 +14,14 @@ export default class MixedType {
      * Convert content to string
      */
     public toString() {
-        return toString(this.content);
+        return toString(this.content || '');
+    }
+
+    /**
+     * Get Raw Value
+     */
+    public toRaw() {
+        return this.content as any;
     }
 
     /**
@@ -42,7 +49,11 @@ export default class MixedType {
         throw new Error(`${this.content} is not a valid number`);
     }
 
-    public toFileWrapper() {
+    /**
+     * Open value as FileWrapper
+     * @returns {FileWrapper}
+     */
+    public toFile() {
         return new FileWrapper(this.toString());
     }
 }

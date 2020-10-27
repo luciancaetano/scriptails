@@ -45,7 +45,7 @@ export default class FileWrapper {
     }
 
     /**
-     * Open an TieFdWrapper Warpping
+     * Open an FileDescriptor Warpping
      */
     public open(flags: string | number, mode?: string | number | undefined | null) {
         return new Promise<FileDescriptor>((resolve, reject) => {

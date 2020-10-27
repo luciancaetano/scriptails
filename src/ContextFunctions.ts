@@ -21,27 +21,16 @@ export async function runScripts(argv: string[], name: string, description?: str
 
     // eslint-disable-next-line
     for (const promiseFn of promiseQueue) {
-        await promiseFn();
+        await Promise.resolve(promiseFn());
     }
 
-    const runCmd = () => new Promise<void>((resolve, reject) => {
-        try {
-            if (description) {
-                commander
-                    .parse(argv).description(description, argsDescription);
-            } else {
-                commander
-                    .parse(argv);
-            }
-
-            commander.name(name);
-            resolve();
-        } catch (e) {
-            reject(e);
-        }
-    });
-
-    await runCmd();
+    if (description) {
+        commander
+            .parse(argv).description(description, argsDescription).name(name);
+    } else {
+        commander
+            .parse(argv).name(name);
+    }
 }
 
 /**
@@ -61,24 +50,24 @@ export async function runScripts(argv: string[], name: string, description?: str
  *     option('-p, --pepper', 'add pepper');
  *
  *     --pepper
- *     tie.option('pepper')
+ *     option('pepper')
  *     // => Boolean
  *
  *     // simple boolean defaulting to true
  *     option('-C, --no-cheese', 'remove cheese');
  *
- *      tie.option('cheese')
+ *      option('cheese')
  *     // => true
  *
  *     --no-cheese
- *      tie.option('cheese')
+ *      option('cheese')
  *     // => false
  *
  *     // required argument
  *     option('-C, --chdir <path>', 'change the working directory');
  *
  *     --chdir /tmp
- *      tie.option('chdir')
+ *      option('chdir')
  *     // => "/tmp"
  *
  *     // optional argument
@@ -253,12 +242,14 @@ export function onAction(callBack: ActionContextCallback) {
 
     if (cmd) {
         cmd.action(async (...actionArgs: any[]) => {
+            ScriptContext.getInstance().setCurrentCommandName(cmd.name());
             ScriptContext.getInstance().setCurrentRunningCommand(last(actionArgs));
             const prevContextType = ScriptContext.getInstance().getContextType();
             ScriptContext.getInstance().setContextType('command');
-            await callBack(...actionArgs.slice(0, -1).map((v) => new MixedType(v)));
+            await Promise.resolve(callBack(...actionArgs.slice(0, -1).map((v) => new MixedType(v))));
             ScriptContext.getInstance().setContextType(prevContextType);
             ScriptContext.getInstance().setCurrentRunningCommand(null);
+            ScriptContext.getInstance().setCurrentCommandName(null);
         });
     }
 }

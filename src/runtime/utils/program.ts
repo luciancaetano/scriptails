@@ -1,5 +1,8 @@
-import { get, isError } from 'lodash';
+import {
+    filter, first, get, isError, map,
+} from 'lodash';
 import * as chalk from 'chalk';
+import { program } from 'commander';
 import ScriptContext from '../../ScriptContext';
 import MixedType from '../core/castable/MixedType';
 
@@ -17,18 +20,25 @@ export function exitError(message: string | Error, label = true) {
 }
 
 /**
+ * Get all options/flags in program
+ * @returns {Object}
+ */
+export function getOptions() {
+    const commandName = ScriptContext.getInstance().getCurrentCommandName();
+
+    return first(filter(map(program.commands, (command) => {
+        if (command.name() === commandName) {
+            return command.opts();
+        }
+        return null;
+    }), (item) => !!item)) || {};
+}
+
+/**
  * Read an option/flag in program
  * @param {string} name
  * @param {string|boolean|null} defaultValue
  */
 export function getOption(name: string, defaultValue: string | boolean | null = null) {
-    return new MixedType(get(ScriptContext.getInstance().getCurrentRunningCommand(), name, defaultValue) || defaultValue);
-}
-
-/**
- * Get all options/flags in program
- * @returns {Object}
- */
-export function getOptions() {
-    return ScriptContext.getInstance().getCurrentRunningCommand();
+    return new MixedType(get(getOptions(), name, defaultValue) || defaultValue);
 }

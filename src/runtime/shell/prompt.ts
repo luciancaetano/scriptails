@@ -2,11 +2,6 @@ import * as chalk from 'chalk';
 import * as readline from 'readline';
 import { PromptOptions } from '../types';
 
-const readLineInterface = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
-
 function parseIntent(intent: 'danger' | 'success' | 'warning' | 'info' | undefined, message: string) {
     switch (intent) {
     case 'success':
@@ -28,6 +23,11 @@ function parseIntent(intent: 'danger' | 'success' | 'warning' | 'info' | undefin
  * @param settings PromptOptions
  */
 export async function prompt(question: string, settings: PromptOptions = {}): Promise<string | null> {
+    const readLineInterface = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    });
+
     let questionText = parseIntent(settings.intent, question);
 
     if (settings.hint) {
@@ -37,14 +37,17 @@ export async function prompt(question: string, settings: PromptOptions = {}): Pr
     const answer: string = await new Promise((resolve) => readLineInterface.question(questionText, resolve));
 
     if (answer && String(answer).trim().length > 0) {
+        readLineInterface.close();
         return answer;
     }
 
     if (settings.defaultValue) {
+        readLineInterface.close();
         return settings.defaultValue;
     }
 
     if (settings.allowEmpty) {
+        readLineInterface.close();
         return null;
     }
 

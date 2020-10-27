@@ -9,6 +9,8 @@ export default class ScriptContext {
 
     private currentRunningCommand: commander.Command | null = null;
 
+    private currentOnActionCommandName: string | null = null;
+
     /**
      * Get ScriptContext Instance
      */
@@ -84,6 +86,14 @@ export default class ScriptContext {
 
     public getCurrentRunningCommand() {
         return this.currentRunningCommand;
+    }
+
+    public setCurrentCommandName(name: string | null) {
+        this.currentOnActionCommandName = name;
+    }
+
+    public getCurrentCommandName() {
+        return this.currentOnActionCommandName;
     }
 
     public setCurrentRunningCommand(currentRunningCommand: commander.Command | null) {

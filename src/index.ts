@@ -1,4 +1,4 @@
-import 'regenerator-runtime/runtime.js';
+require('pretty-error').start();
 
 export * from './runtime';
 export * from './ContextFunctions';
