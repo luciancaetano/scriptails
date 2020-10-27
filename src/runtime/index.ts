@@ -1,5 +1,5 @@
 import {
-    exitError, getOption, isPlatform, log, logLines, logWithLabel,
+    exitError, getOption, isPlatform, log, logLines, logWithLabel, getOptions,
 } from './utils';
 import {
     shellExec, shellExecFile, ShellExecException, ShellExecFileOptions, ShellExecOptions, prompt,
@@ -16,7 +16,7 @@ export const sm = {
     logLines,
     logWithLabel,
     prompt,
-
+    getOptions,
 };
 
 export {
