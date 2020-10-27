@@ -70,6 +70,25 @@ command('build <platform>', () => {
 });
 ```
 
+### Pure Javascript
+You can use pure javascript projects.
+```javascript
+const {
+    runScripts, command, option, sm, onAction,
+} = require('scriptmizer');
+
+command('build', () => {
+    option('--debug', 'debug', false);
+    onAction(async () => {
+        const debug = sm.getOption('debug').toBoolean() ? 'true' : false;
+
+        sm.shellExec(`echo ${debug}`);
+    });
+});
+
+runScripts(process.argv, 'simples-script');
+```
+
 ## Demonstrations
 You can see more demonstrations and examples in https://github.com/luciancaetano/scriptmizer-examples
 
