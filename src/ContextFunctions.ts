@@ -16,7 +16,7 @@ export class ScriptContextError extends Error {
  * @param description       string
  * @param argsDescription   Object
  */
-export async function runScripts(argv: string[], name: string, description?: string, argsDescription?: {[argName: string]: string}) {
+export async function scriptmizerStart(argv: string[], name: string, description?: string, argsDescription?: {[argName: string]: string}) {
     const promiseQueue = ScriptContext.getInstance().getPromiseQueue();
 
     // eslint-disable-next-line

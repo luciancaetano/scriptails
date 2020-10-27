@@ -20,17 +20,17 @@ You might want to use Scriptmizer if:
 Create a script folder (choose the name you want) and put an index(.ts or .js) file.
 
 ```javascript
-    import { runScripts } from 'scriptmizer';
+    import { scriptmizerStart } from 'scriptmizer';
     // Import scripts here
     import './my-command';
 
-    // You must import the scripts before call runScripts
-    runScripts(process.argv);
+    // You must import the scripts before call scriptmizerStart
+    scriptmizerStart(process.argv);
 ```
 
 ### Link scripts (Generate ".bin")
 Npm can link your binaries declared in `package.json` in bin attr,
-you can provide a custom command name and a path to your scriptStart file **(the file that runs runScripts)**
+you can provide a custom command name and a path to your scriptStart file **(the file that runs scriptmizerStart)**
 ```json
     ....
     "bin": {
@@ -74,7 +74,7 @@ command('build <platform>', () => {
 You can use pure javascript projects.
 ```javascript
 const {
-    runScripts, command, option, sm, onAction,
+    scriptmizerStart, command, option, sm, onAction,
 } = require('scriptmizer');
 
 command('build', () => {
@@ -86,7 +86,7 @@ command('build', () => {
     });
 });
 
-runScripts(process.argv, 'simples-script');
+scriptmizerStart(process.argv, 'simples-script');
 ```
 
 ## Demonstrations
