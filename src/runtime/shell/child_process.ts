@@ -1,6 +1,6 @@
 import * as childProcess from 'child_process';
 import * as chalk from 'chalk';
-import { isBoolean } from 'lodash';
+import { get, isBoolean } from 'lodash';
 import * as program from 'commander';
 import { ShellExecResult } from '../types';
 import { exitError, log } from '../utils';
@@ -82,7 +82,7 @@ export const shellExec = (command: string, opt?: ShellExecOptions | null) => new
         };
     }
 
-    if (opts.log.start) {
+    if (get(opts, ['log', 'start'])) {
         log(`${chalk.bgGreen.white.bold(' EXEC ')} runing command ${chalk.green(`"${command}"`)}`);
     }
 
@@ -148,7 +148,7 @@ export const shellExecFile = (command: string, args: ReadonlyArray<string> | und
         };
     }
 
-    if (opts.log.start) {
+    if (get(opts, ['log', 'start'])) {
         log(`${chalk.bgGreen.white.bold(' EXEC FILE ')} runing command ${chalk.green(`"${command}"`)}`);
     }
 
