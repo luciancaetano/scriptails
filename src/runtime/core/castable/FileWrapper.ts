@@ -38,7 +38,7 @@ export default class FileWrapper {
     /**
      * Parse file contents to json
      */
-    public toJson<T = any>(encoding = 'utf8'): T {
+    public toJson<T = any>(encoding: BufferEncoding = 'utf-8'): T {
         const content = this.readContent();
 
         return JSON.parse(content.toString(encoding));
