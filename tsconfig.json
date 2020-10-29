@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "outDir": "./dist/",
     "strict": true,
+    "sourceMap": true,
     "skipLibCheck": false,
     "resolveJsonModule": true,
     "declaration": false,
