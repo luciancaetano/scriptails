@@ -47,15 +47,7 @@ export default class FileWrapper {
     /**
      * Open an FileDescriptor Warpping
      */
-    public open(flags: string | number, mode?: string | number | undefined | null) {
-        return new Promise<FileDescriptor>((resolve, reject) => {
-            fs.open(this.fileName, flags, mode, (error, fd) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(new FileDescriptor(fd));
-                }
-            });
-        });
+    public open(flags: fs.OpenMode, mode?: fs.Mode | null) {
+        return new FileDescriptor(this.fileName, flags, mode);
     }
 }

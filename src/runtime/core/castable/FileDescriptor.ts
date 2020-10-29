@@ -1,59 +1,60 @@
 import * as fs from 'fs';
-import { FdWrapperWriteResponse, FdWrapperReadResponse } from '../../types';
 
 /**
- * Wrapper's node fs.FileDescription functions to a Class
+ * Wrapper's node fs.FileDescriptor functions to a Class.
+ * Inspired by C file pointers
  */
 export default class FileDescriptor {
-    private fd: number;
+    private fd: number
 
-    public constructor(fd: number) {
-        this.fd = fd;
+    private position: number;
+
+    /**
+     * @param {string} fileName
+     * @param {fs.OpenMode} flags
+     * @param {fs.Mode} mode
+     */
+    constructor(fileName: string, flags: fs.OpenMode, mode?: fs.Mode | null) {
+        this.fd = fs.openSync(fileName, flags, mode);
+        this.position = 0;
     }
 
     /**
-     * Asynchronously writes `buffer` to the file referenced by the supplied file descriptor.
+     * Asynchronously writes `buffer` to the file.
      * @param fd A file descriptor.
-     * @param offset The part of the buffer to be written. If not supplied, defaults to `0`.
-     * @param length The number of bytes to write. If not supplied, defaults to `buffer.length - offset`.
-     * @param position The offset from the beginning of the file where this data should be written. If not supplied, defaults to the current position.
+     * @param {TBuffer} buffer The buffer to write
      */
     public write<TBuffer extends NodeJS.ArrayBufferView>(
         buffer: TBuffer,
-        offset: number | undefined | null,
-        length: number | undefined | null,
-        position: number | undefined | null,
     ) {
-        return new Promise<FdWrapperWriteResponse<TBuffer>>((resolve, reject) => {
-            fs.write(this.fd, buffer, offset, length, position, (error, written: number, resBuffer: TBuffer) => {
+        return new Promise<TBuffer>((resolve, reject) => {
+            fs.write(this.fd, buffer, 0, buffer.byteLength, this.position, (error, bytesWritten: number, response: TBuffer) => {
                 if (error) {
                     reject(error);
                 } else {
-                    resolve({ written, buffer: resBuffer });
+                    resolve(response);
                 }
+                this.position += bytesWritten;
             });
         });
     }
 
     /**
-     * Asynchronously reads data from the file referenced by the supplied file descriptor.
-     * @param offset The offset in the buffer at which to start writing.
+     * Asynchronously reads data from the file.
      * @param length The number of bytes to read.
-     * @param position The offset from the beginning of the file from which data should be read. If `null`, data will be read from the current position.
      */
     public read(
-        offset: number,
         length: number,
-        position: number | null,
     ) {
-        return new Promise<FdWrapperReadResponse<Buffer>>((resolve, reject) => {
+        return new Promise<Buffer>((resolve, reject) => {
             const buffer = Buffer.alloc(length);
 
-            fs.read(this.fd, buffer, offset, length, position, (error, bytesRead: number, resBuffer: Buffer) => {
+            fs.read(this.fd, buffer, 0, length, this.position, (error, bytesRead: number, response: Buffer) => {
                 if (error) {
                     reject(error);
                 } else {
-                    resolve({ bytesRead, buffer: resBuffer });
+                    resolve(response);
+                    this.position += length;
                 }
             });
         });
@@ -74,7 +75,23 @@ export default class FileDescriptor {
     }
 
     /**
-     * Return file descriptor
+     * Set the file descriptor position
+     * @param {number} position
+     */
+    public seek(position: number) {
+        this.position = position;
+    }
+
+    /**
+     * Get current file descriptor position
+     * @returns {number}
+     */
+    public tell() {
+        return this.position;
+    }
+
+    /**
+     * Return file descriptor pointer
      */
     public getDescriptor() {
         return this.fd;
