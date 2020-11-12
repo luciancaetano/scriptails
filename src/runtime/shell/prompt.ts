@@ -51,5 +51,7 @@ export async function prompt(question: string, settings: PromptOptions = {}): Pr
         return null;
     }
 
+    readLineInterface.close();
+
     return prompt(question, settings);
 }
