@@ -34,7 +34,7 @@ export async function prompt(question: string, settings: PromptOptions = {}): Pr
         questionText = `${questionText} ${chalk.dim(`(${settings.hint})`)}`;
     }
 
-    const answer: string = await new Promise((resolve) => readLineInterface.question(questionText, resolve));
+    const answer: string = await new Promise((resolve) => readLineInterface.question(`${questionText}\n`, resolve));
 
     if (answer && String(answer).trim().length > 0) {
         readLineInterface.close();
