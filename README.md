@@ -1,5 +1,8 @@
 # Scriptmizer
 
+
+![preview](https://media.giphy.com/media/L0SKuIdItTmOOiTlwg/giphy.gif "Prewview")
+
 **Attention: This is a package under development, some bugs can be found**
 
 Scriptmizer is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
