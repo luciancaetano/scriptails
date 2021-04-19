@@ -1,39 +1,39 @@
-# Scriptmizer
+# Scriptails
 
 
 ![preview](https://media.giphy.com/media/L0SKuIdItTmOOiTlwg/giphy.gif "Prewview")
 
 **Attention: This is a package under development, some bugs can be found**
 
-Scriptmizer is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
+Scriptails is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
 
-**This project is under development and you may found bugs please report them to https://github.com/luciancaetano/scriptmizer/issues**
+**This project is under development and you may found bugs please report them to https://github.com/luciancaetano/scriptails/issues**
 
-## Why use Scriptmizer?
-You might want to use Scriptmizer if:
+## Why use Scriptails?
+You might want to use Scriptails if:
 - You need to build some advanced scripts to perform repetitive tasks on your project.
 - You have a complex deployment process and you need to simplify this.
 - You want to automate some things.
 
 ## Quick Start
-    npm i -D scriptmizer
+    npm i -D scriptails
     or
-    yarn add scriptmizer
+    yarn add scriptails
 
 Create a script folder (choose the name you want) and put an index(.ts or .js) file.
 
 ```javascript
-    import { scriptmizerStart } from 'scriptmizer';
+    import { scriptStart } from 'scriptails';
     // Import scripts here
     import './my-command';
 
-    // You must import the scripts before call scriptmizerStart
-    scriptmizerStart(process.argv);
+    // You must import the scripts before call scriptStart
+    scriptStart(process.argv);
 ```
 
 ### Link scripts (Generate ".bin")
 Npm can link your binaries declared in `package.json` in bin attr,
-you can provide a custom command name and a path to your scriptStart file **(the file that runs scriptmizerStart)**
+you can provide a custom command name and a path to your scriptStart file **(the file that runs scriptStart)**
 ```json
     ....
     "bin": {
@@ -51,7 +51,7 @@ The structure of the scripts was inspired by the unit testing framework like moc
 ```javascript
 import {
     command, option, onAction, sm,
-} from 'scriptmizer';
+} from 'scriptails';
 command('build <platform>', () => {
     option('--debug', 'Build debug apk', false);
 
@@ -77,8 +77,8 @@ command('build <platform>', () => {
 You can use pure javascript projects.
 ```javascript
 const {
-    scriptmizerStart, command, option, sm, onAction,
-} = require('scriptmizer');
+    scriptStart, command, option, sm, onAction,
+} = require('scriptails');
 
 command('build', () => {
     option('--debug', 'debug', false);
@@ -89,11 +89,8 @@ command('build', () => {
     });
 });
 
-scriptmizerStart(process.argv, 'simples-script');
+scriptStart(process.argv, 'simples-script');
 ```
-
-## Demonstrations
-You can see more demonstrations and examples in https://github.com/luciancaetano/scriptmizer-examples
 
 ## Recommended libraries
 
