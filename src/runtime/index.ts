@@ -2,7 +2,7 @@ import {
     exitError, getOption, isPlatform, log, logLines, logWithLabel, getOptions,
 } from './utils';
 import {
-    shellExec, shellExecFile, ShellExecException, ShellExecFileOptions, ShellExecOptions, prompt,
+    shellExec, shellExecFile, ShellExecException, ShellExecFileOptions, ShellExecOptions,
 } from './shell';
 
 export const sm = {

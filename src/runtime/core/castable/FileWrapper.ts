@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import FileDescriptor from './FileDescriptor';
 
 export default class FileWrapper {
     private fileName: string;
@@ -42,12 +41,5 @@ export default class FileWrapper {
         const content = this.readContent();
 
         return JSON.parse(content.toString(encoding));
-    }
-
-    /**
-     * Open an FileDescriptor Warpping
-     */
-    public open(flags: fs.OpenMode, mode?: fs.Mode | null) {
-        return new FileDescriptor(this.fileName, flags, mode);
     }
 }
