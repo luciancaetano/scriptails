@@ -14,13 +14,14 @@ export const tails = {
     isPlatform,
     log,
     ShellExecException,
-    utils: {
-        exec: shellExec,
-        execFile: shellExecFile,
-    },
     logLines,
     logWithLabel,
     getOptions,
+};
+
+export const utils = {
+    exec: shellExec,
+    execFile: shellExecFile,
 };
 
 export {

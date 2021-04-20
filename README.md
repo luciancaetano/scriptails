@@ -50,24 +50,24 @@ The structure of the scripts was inspired by the unit testing framework like moc
 
 ```javascript
 import {
-    command, option, onAction, sm,
+    command, option, onAction, tails, utils,
 } from 'scriptails';
 command('build <platform>', () => {
     option('--debug', 'Build debug apk', false);
 
     onAction(async (platform) => {
-        const debug = sm.getOption('debug');
+        const debug = tails.getOption('debug');
 
         if (platform.toString() === 'android') {
             if (debug) {
-                await sm.shellExec('./android/gradlew assembleDebug');
-                sm.log('Build Success');
+                await utils.shellExec('./android/gradlew assembleDebug');
+                tails.log('Build Success');
             } else {
-                await sm.shellExec('./android/gradlew assembleRelease');
-                sm.log('Build Success');
+                await utils.shellExec('./android/gradlew assembleRelease');
+                tails.log('Build Success');
             }
         } else {
-            sm.exitError('Only android platform is supported now');
+            tails.exitError('Only android platform is supported now');
         }
     });
 });
@@ -77,15 +77,15 @@ command('build <platform>', () => {
 You can use pure javascript projects.
 ```javascript
 const {
-    scriptStart, command, option, sm, onAction,
+    scriptStart, command, option, tails, utils, onAction,
 } = require('scriptails');
 
 command('build', () => {
     option('--debug', 'debug', false);
     onAction(async () => {
-        const debug = sm.getOption('debug').toBoolean() ? 'true' : false;
+        const debug = tails.getOption('debug').toBoolean() ? 'true' : false;
 
-        sm.shellExec(`echo ${debug}`);
+        utils.shellExec(`echo ${debug}`);
     });
 });
 
