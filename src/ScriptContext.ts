@@ -1,6 +1,5 @@
 import * as commander from 'commander';
 import { InternalContext, InternalContextType } from './runtime/core/internalTypes';
-import * as Package from '../package.json';
 
 export default class ScriptContext {
     private static instance: ScriptContext;

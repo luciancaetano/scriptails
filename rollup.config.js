@@ -10,11 +10,13 @@ export default {
         {
             format: 'cjs',
             sourcemap: true,
+            exports: 'named',
             file: './dist/index.cjs.js',
         },
         {
             format: 'esm',
             sourcemap: true,
+            exports: 'named',
             file: './dist/index.esm.js',
         },
     ],
@@ -27,6 +29,8 @@ export default {
     plugins: [
         typescript({
             typescript: tsc,
+            rollupCommonJSResolveHack: false,
+            clean: true,
             tsconfigOverride: {
                 compilerOptions: {
                     module: 'ESNext',

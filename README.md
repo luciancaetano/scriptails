@@ -95,11 +95,8 @@ scriptStart(process.argv, 'simples-script');
 ## Recommended libraries
 
 - **Inquirer.js**: A collection of common interactive command line user interfaces.
-- **shelljs**: ShellJS is a portable (Windows/Linux/OS X) implementation of Unix shell commands on top of the Node.js API.
 - **cli-table**: Pretty unicode tables for the CLI with Node.JS.
-- **chalk**: Terminal string styling done right.
 - **figlet.js**: A FIG Driver written in JavaScript which aims to fully implement the FIGfont spec.
-- **prompts**: Lightweight, beautiful and user-friendly interactive prompts
 
 # Roadmap
 

@@ -19,7 +19,6 @@ export class ScriptContextError extends Error {
 export async function scriptStart(argv: string[], name: string, description?: string, argsDescription?: {[argName: string]: string}, version?: string | null) {
     const promiseQueue = ScriptContext.getInstance().getPromiseQueue();
 
-    // eslint-disable-next-line
     for (const promiseFn of promiseQueue) {
         await Promise.resolve(promiseFn());
     }
@@ -35,6 +34,12 @@ export async function scriptStart(argv: string[], name: string, description?: st
         commander
             .parse(argv).name(name);
     }
+
+    return {
+        finalize: async () => {
+            await Promise.all(promiseQueue);
+        },
+    };
 }
 
 /**

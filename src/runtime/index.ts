@@ -1,3 +1,6 @@
+import * as shell from 'shelljs';
+import * as chalk from 'chalk';
+import * as prompts from 'prompts';
 import {
     exitError, getOption, isPlatform, log, logLines, logWithLabel, getOptions,
 } from './utils';
@@ -5,14 +8,16 @@ import {
     shellExec, shellExecFile, ShellExecException, ShellExecFileOptions, ShellExecOptions,
 } from './shell';
 
-export const tails = {
+export const tail = {
     exitError,
     getOption,
     isPlatform,
     log,
-    shellExec,
-    shellExecFile,
     ShellExecException,
+    utils: {
+        exec: shellExec,
+        execFile: shellExecFile,
+    },
     logLines,
     logWithLabel,
     getOptions,
@@ -21,4 +26,7 @@ export const tails = {
 export {
     ShellExecFileOptions,
     ShellExecOptions,
+    shell,
+    chalk,
+    prompts,
 };
