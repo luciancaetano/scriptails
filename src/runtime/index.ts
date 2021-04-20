@@ -5,7 +5,7 @@ import {
     shellExec, shellExecFile, ShellExecException, ShellExecFileOptions, ShellExecOptions,
 } from './shell';
 
-export const sm = {
+export const tails = {
     exitError,
     getOption,
     isPlatform,

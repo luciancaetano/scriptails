@@ -9,7 +9,7 @@
     "build": "yarn lint && yarn types && rollup -c",
     "lint": "eslint src",
     "types": "npx dts-bundle-generator ./src/index.ts -o types.d.ts",
-    "test:cli": "ts-node ./tests/simple-cli.ts",
+    "test:cli": "ts-node ./tests/mocked-cli.ts",
     "test": "jest --no-cache",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
