@@ -14,7 +14,7 @@ export const cli = (args: string[], cwd: string) => new Promise<CliResponse>((re
         stdout: '',
         error: null,
     };
-    const res = exec(`npm run test:cli -- ${args.join(' ')}`, { cwd });
+    const res = exec(`npm run test:cli -- ${args.join(' ')}`, { cwd, windowsHide: false });
 
     res.stdout?.on('data', (data) => {
         response.stdout += data.toString();

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic CLI testing should match cli version 1`] = `
+"
+> scriptails@2.0.1 test:cli D:\\\\projects\\\\scriptmizer
+> ts-node ./tests/mocked-cli.ts \\"-V\\"
+
+1.0
+"
+`;
+
+exports[`Basic CLI testing should run a cli with help arg 1`] = `
+"
+> scriptails@2.0.1 test:cli D:\\\\projects\\\\scriptmizer
+> ts-node ./tests/mocked-cli.ts \\"--help\\"
+
+Usage: mocked-cli [options] [command]
+
+Options:
+  --silent        Disable log and debug information, including children
+                  proccess stdout (default: false)
+  -V, --version   output the version number
+  -h, --help      display help for command
+
+Commands:
+  list-files      it should list files
+  help [command]  display help for command
+"
+`;

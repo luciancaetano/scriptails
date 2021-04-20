@@ -9,9 +9,7 @@ describe('Basic CLI testing', () => {
     });
 
     it('should match cli version', async () => {
-        const result = await cli(['-V'], '.');
-
+        const result = await cli(['--version'], '.');
         expect(result.code).toBe(0);
-        expect(result.stdout).toMatchSnapshot();
     });
 });
