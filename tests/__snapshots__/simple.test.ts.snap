@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic CLI testing should match cli version 1`] = `
+"
+> scriptails@2.0.1 test:cli D:\\\\projects\\\\scriptmizer
+> ts-node ./tests/simple-cli.ts \\"-V\\"
+
+1.0
+"
+`;
+
+exports[`Basic CLI testing should run a cli with help arg 1`] = `
+"
+> scriptails@2.0.1 test:cli D:\\\\projects\\\\scriptmizer
+> ts-node ./tests/simple-cli.ts \\"--help\\"
+
+Usage: simple-cli [options]
+
+Options:
+  --silent       Disable log and debug information, including children proccess
+                 stdout (default: false)
+  -V, --version  output the version number
+  -h, --help     display help for command
+"
+`;
+
+exports[`Basic CLI testing should run a cli without any args 1`] = `
+"
+> scriptails@2.0.1 test:cli D:\\\\projects\\\\scriptmizer
+> ts-node ./tests/simple-cli.ts
+
+"
+`;

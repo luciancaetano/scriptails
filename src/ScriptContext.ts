@@ -27,8 +27,7 @@ export default class ScriptContext {
      */
     public constructor() {
         commander
-            .option('--silent', 'Disable log and debug information, including children proccess stdout', false)
-            .version(Package.version);
+            .option('--silent', 'Disable log and debug information, including children proccess stdout', false);
 
         this.currentContext = {
             command: null,

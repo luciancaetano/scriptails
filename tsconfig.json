@@ -10,13 +10,14 @@
     "resolveJsonModule": true,
     "declaration": false,
     "types": [
-      "@types/node"
+      "@types/node",
+      "jest"
     ]
   },
   "exclude": [
     "node_modules",
-    "**/__tests__/*",
-    "./examples/**/*",
+    "**/*.test.ts",
+    "**/*.spec.ts",
     "./lib/**/*"
   ]
 }

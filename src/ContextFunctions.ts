@@ -16,12 +16,16 @@ export class ScriptContextError extends Error {
  * @param description       string
  * @param argsDescription   Object
  */
-export async function scriptStart(argv: string[], name: string, description?: string, argsDescription?: {[argName: string]: string}) {
+export async function scriptStart(argv: string[], name: string, description?: string, argsDescription?: {[argName: string]: string}, version?: string | null) {
     const promiseQueue = ScriptContext.getInstance().getPromiseQueue();
 
     // eslint-disable-next-line
     for (const promiseFn of promiseQueue) {
         await Promise.resolve(promiseFn());
+    }
+
+    if (version) {
+        commander.version(version);
     }
 
     if (description) {

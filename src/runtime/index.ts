@@ -15,7 +15,6 @@ export const sm = {
     ShellExecException,
     logLines,
     logWithLabel,
-    prompt,
     getOptions,
 };
 

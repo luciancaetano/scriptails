@@ -100,3 +100,8 @@ scriptStart(process.argv, 'simples-script');
 - **chalk**: Terminal string styling done right.
 - **figlet.js**: A FIG Driver written in JavaScript which aims to fully implement the FIGfont spec.
 - **prompts**: Lightweight, beautiful and user-friendly interactive prompts
+
+# Roadmap
+
+- Rename projet
+- implement tests
