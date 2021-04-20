@@ -9,10 +9,10 @@ command('list-files', () => {
 
         if (platform.toString() === 'android') {
             if (debug) {
-                await tails.shellExec('cd /');
+                await tails.utils.exec('cd /');
                 tails.log('Build Success');
             } else {
-                await tails.shellExec('./android/gradlew assembleRelease');
+                await tails.utils.exec('./android/gradlew assembleRelease');
                 tails.log('Build Success');
             }
         } else {
