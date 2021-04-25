@@ -1,113 +1,26 @@
-import * as fs from 'fs';
-import { omit } from 'lodash';
-import * as path from 'path';
-import {
-    command, commandDescription, onAction, tails, prompts, utils, chalk, shell,
-} from '../lib/index';
-import { IScriptConfigFile } from './types';
+import { command, start } from 'scriptails';
 
-const defaultScriptailsFile = '.scriptails.json';
+command('build', (c) => {
+    c.aliases(['b']);
+    c.description('description');
+    c.option(['-D', '--debug'], null, 'build debug mode', false);
+    c.option(['-P', '--project'], { title: 'projectName', required: true }, 'project name');
+    c.option(['-P', '--platforms'], { title: 'platforms', variadic: true }, 'target platforms', 'windows');
+    c.arg('dir', true, false, 'dir description');
 
-const skipInstall = true;
+    c.onAction((action) => {
+        const debug = action.getOption('debug').toBoolean();
+        const project = action.getOption('project').toString();
+        const myArgs = action.getArgs()[0].toString();
 
-command('init', () => {
-    commandDescription(`Configures and create "${defaultScriptailsFile}"`);
-    onAction(async () => {
-        tails.log('Checking package.json');
+        action.logWithLabel('info', { debug, myArgs, project });
 
-        if (!fs.existsSync(path.join(process.cwd(), 'package.json'))) {
-            tails.exitError('This command must be executed in a directory containing the package.json file');
-        }
-
-        const projectPackageFile = tails.mix(path.join(process.cwd(), 'package.json')).toFile().toJson('utf-8');
-
-        const depPresent = Object.keys(projectPackageFile.devDependencies).indexOf('scriptails') !== -1
-         && Object.keys(projectPackageFile.dependencies).indexOf('scriptails') !== -1;
-
-        if (!depPresent) {
-            const isYarn = tails.mix(path.join(process.cwd(), 'yarn.lock')).toFile().exists();
-
-            tails.log(chalk.green('An installation of scriptails was not detected, installing ....'));
-
-            const choices = [
-                { title: 'npm', value: 'npm' },
-                { title: 'yarn', value: 'yarn' },
-            ];
-
-            const response = await prompts([
-                {
-                    type: 'select',
-                    name: 'pm',
-                    message: 'what is your project\'s default package manager?',
-                    choices: isYarn ? choices.reverse() : choices,
-                },
-            ]);
-
-            if (response.pm === 'npm' && !skipInstall) {
-                utils.exec('npm install --save-dev scriptails', { cwd: process.cwd() });
-            } else if (response.pm === 'yarn' && !skipInstall) {
-                utils.exec('yarn add --dev scriptails', { cwd: process.cwd() });
-            } else if (!skipInstall) {
-                tails.exitError('The installation cannot continue.');
-            }
-        }
-
-        let scriptailsTemplate: IScriptConfigFile = {
-            name: '',
-            description: undefined,
-            version: undefined,
-        };
-
-        const questionTs = await prompts([
-            {
-                type: 'text',
-                name: 'name',
-                message: 'Enter the name of your tool',
-            },
-            {
-                type: 'text',
-                name: 'description',
-                message: 'Type a description for your tool',
-            },
-            {
-                type: 'text',
-                name: 'version',
-                message: 'Enter a version',
-            },
-            {
-                type: 'select',
-                name: 'ts',
-                message: 'support typescript?',
-                choices: [
-                    { title: 'yes', value: 'yes' },
-                    { title: 'no', value: 'no' },
-                ],
-            },
-        ]);
-
-        scriptailsTemplate = { ...scriptailsTemplate, ...omit(questionTs, 'ts') };
-
-        if (questionTs.ts === 'yes') {
-            scriptailsTemplate.match = ['<rootDir>/scripts/commands/**/*.command.{js,ts}'];
-        }
-
-        if (String(questionTs.name).trim().length <= 0) {
-            scriptailsTemplate = omit(scriptailsTemplate, 'name') as any;
-        }
-
-        if (String(questionTs.description).trim().length <= 0) {
-            scriptailsTemplate = omit(scriptailsTemplate, 'description') as any;
-        }
-
-        if (String(questionTs.version).trim().length <= 0) {
-            scriptailsTemplate = omit(scriptailsTemplate, 'version') as any;
-        }
-
-        tails.mix(path.join(process.cwd(), defaultScriptailsFile)).toFile().writeContet(JSON.stringify(scriptailsTemplate, null, '\t'));
-
-        shell.mkdir('scripts');
-        shell.mkdir('scripts/commands');
-
-        tails.logWithLabel('Configuration completed.\nrun npx scriptails start', 'success');
+        action.exitError('Error');
     });
+});
+
+start(process.argv, {
+    name: 'my-cli',
+    description: 'cli description',
+    version: '1.0',
 });
