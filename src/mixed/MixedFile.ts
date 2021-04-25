@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as YAML from 'yaml';
 
 export default class MixedFile {
     private fileName: string;
@@ -22,7 +23,7 @@ export default class MixedFile {
     }
 
     /** Write to file */
-    public writeContet(content: any) {
+    public writeContet(content: string | NodeJS.ArrayBufferView) {
         return new Promise<void>((resolve, reject) => {
             fs.writeFile(this.fileName, content, (error) => {
                 if (error) {
@@ -35,11 +36,20 @@ export default class MixedFile {
     }
 
     /**
-     * Parse file contents to json
+     * Parse file contents as json to javascript object
      */
     public toJson<T = any>(encoding: BufferEncoding = 'utf-8'): T {
         const content = this.readContent();
 
         return JSON.parse(content.toString(encoding));
+    }
+
+    /**
+     * Parse file contents as yaml to javascript object
+     */
+    public toYaml<T = any>(encoding: BufferEncoding = 'utf-8'): T {
+        const content = this.readContent();
+
+        return YAML.parse(content.toString(encoding));
     }
 }

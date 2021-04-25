@@ -59,6 +59,7 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "@types/yaml": "^1.9.7",
     "chalk": "^4.1.1",
     "commander": "^7.2.0",
     "glob": "^7.1.6",
@@ -66,7 +67,8 @@
     "pretty-error": "^3.0.3",
     "prompts": "^2.4.1",
     "shelljs": "^0.8.4",
-    "tslib": "^2.2.0"
+    "tslib": "^2.2.0",
+    "yaml": "^1.10.2"
   },
   "husky": {
     "hooks": {

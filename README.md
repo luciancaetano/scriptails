@@ -3,6 +3,8 @@
 Scriptails is a framework for building a command line interface(CLI) using Node.js.Scriptails makes easy to build your own CLIs for your company, servicer, project.
 Yes, scriptails were created to be used both within projects and as a separate tool.
 
+**Read Docs Here:** https://scriptails-docs.vercel.app/
+
 **Found an issue? submit to us https://github.com/luciancaetano/scriptails/issues**
 
 ## Why use Scriptails?

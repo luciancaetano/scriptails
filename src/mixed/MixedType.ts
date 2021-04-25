@@ -1,12 +1,12 @@
 import {
-    toString, isBoolean, isNumber, toNumber,
+    toString, isBoolean, isNumber, toNumber, isArray, map,
 } from 'lodash';
 import MixedFile from './MixedFile';
 
 export default class MixedType {
-    public content: string | boolean;
+    public content: string | boolean | Array<string>;
 
-    public constructor(content: string | boolean) {
+    public constructor(content: string | boolean | Array<string>) {
         this.content = content;
     }
 
@@ -20,7 +20,7 @@ export default class MixedType {
     /**
      * Get Raw Value
      */
-    public toRaw() {
+    public toRaw<T = any>(): T {
         return this.content as any;
     }
 
@@ -43,7 +43,7 @@ export default class MixedType {
      * @throws Error
      */
     public toNumber() {
-        if (isBoolean(this.content) || (this.content === 'true' || this.content === 'false')) {
+        if (isNumber(this.content)) {
             return isNumber(this.content) ? this.content : toNumber(this.content);
         }
         throw new Error(`${this.content} is not a valid number`);
@@ -55,5 +55,15 @@ export default class MixedType {
      */
     public toFile() {
         return new MixedFile(this.toString());
+    }
+
+    /**
+     * Handles Variadic Array
+     */
+    public variadic() {
+        if (isArray(this.content)) {
+            return map(this.content, (item) => new MixedType(String(item)));
+        }
+        throw new Error(`${this.content} is not a valid number`);
     }
 }
