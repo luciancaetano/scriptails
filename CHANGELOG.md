@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/luciancaetano/scriptails/compare/v2.1.0...v2.2.0) (2021-04-25)
+
+
+### Features
+
+* **project:** :recycle:  Update project definitions and utilities ([85999c8](https://github.com/luciancaetano/scriptails/commit/85999c858c1416635b405a5a8cf630150c03c3f4))
+
 ## [2.1.0](https://github.com/luciancaetano/scriptails/compare/v2.0.1...v2.1.0) (2021-04-20)
 
 
