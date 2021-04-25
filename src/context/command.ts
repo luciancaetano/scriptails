@@ -29,8 +29,6 @@ export interface IStartOptions {
     description?: string;
     version?: string;
     useSilentOption?: boolean;
-    templatesPath?: string;
-    customTemplateEngine?: (template: string, params: any) => string;
 }
 
 export function start(argv: string[], options: IStartOptions) {
@@ -45,11 +43,6 @@ export function start(argv: string[], options: IStartOptions) {
     CommandContextTree.getInstance().setDescription(optionsSettings.description);
     CommandContextTree.getInstance().setVersion(optionsSettings.version);
     CommandContextTree.getInstance().useSilent(optionsSettings.useSilentOption);
-    CommandContextTree.getInstance().setTemplatesPath(optionsSettings.templatesPath || 'templates');
-
-    if (optionsSettings.customTemplateEngine) {
-        CommandContextTree.getInstance().setcustomTemplateEngine(optionsSettings.customTemplateEngine);
-    }
 
     const defaultBackend = new CommanderJSBackend(CommandContextTree.getInstance().getStack());
 
