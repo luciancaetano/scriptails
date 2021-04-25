@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/luciancaetano/scriptails/compare/v2.4.0-0...v3.0.1) (2021-04-25)
+
+
+### Features
+
+* :sparkles:  add yaml support and fix some designs ([bbdaf76](https://github.com/luciancaetano/scriptails/commit/bbdaf76e978987f5327e3f7bbaf8831988aadedc))
+* **deps:** Upgrade package.json and remove unused deps ([fe1fe39](https://github.com/luciancaetano/scriptails/commit/fe1fe399b4783db46a5d390a971347d50c01495b))
+
 ## [2.4.0-0](https://github.com/luciancaetano/scriptails/compare/v2.3.1...v2.4.0-0) (2021-04-25)
 
 
