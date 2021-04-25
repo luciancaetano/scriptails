@@ -4,20 +4,21 @@ import { isError } from 'lodash/fp';
 import MixedType from '../mixed/MixedType';
 import { ChildProccessRunner } from '../runtime/childProcess';
 import CommandContextTree from './CommandContextTree';
+import { GetArgsFn, GetOptionFn } from '../backends/BackendAdapter';
 
 const { log: consoleLog } = console;
 
 export default class ActionContext {
     public childProcces = new ChildProccessRunner(this);
 
-    public constructor(private commandName: string | null) {}
+    public constructor(private commandName: string | null, private getOptionFn: GetOptionFn, private getArgsFn: GetArgsFn) {}
 
     public getOption(name: string) {
-        return new MixedType(CommandContextTree.getInstance().getBackendAdapter()?.getOption(name) || '');
+        return new MixedType(this.getOptionFn(name));
     }
 
     public getArgs(): MixedType[] {
-        return CommandContextTree.getInstance().getBackendAdapter()?.getArgs(this.commandName).map((arg) => new MixedType(arg)) || [];
+        return this.getArgsFn(this.commandName).map((arg) => new MixedType(arg)) || [];
     }
 
     /**
