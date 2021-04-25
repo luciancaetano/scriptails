@@ -1,6 +1,6 @@
 const {
     initalize, command, onAction,
-} = require('../dist/index');
+} = require('..');
 
 command('sonic', () => {
     onAction(async () => {
@@ -26,4 +26,4 @@ command('knuckles', () => {
     });
 });
 
-initalize(process.argv, 'mocked-test', 'mock', {}, '1.0');
+initalize(process.argv, 'mocked-test', 'mock', '1.0');

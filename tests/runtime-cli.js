@@ -23,4 +23,4 @@ command('log-lines', () => {
     });
 });
 
-initalize(process.argv, 'mocked-test', 'mock', {}, '1.0');
+initalize(process.argv, 'mocked-test', 'mock', '1.0');

@@ -5,6 +5,7 @@ interface CliResponse {
     code: number | null,
     stdout: string,
     stderr: string,
+    command: string;
     error: Error | null;
 }
 
@@ -14,9 +15,13 @@ export const cli = (file: string, args: string[], cwd: string) => new Promise<Cl
         stderr: '',
         stdout: '',
         error: null,
+        command: '',
     };
     try {
-        const res = exec(`node ${path.resolve(path.join(__dirname, file))} ${args.join(' ')}`, { cwd });
+        const command = `node ${path.resolve(path.join(__dirname, file))} ${args.join(' ')}`;
+        const res = exec(command, { cwd });
+
+        response.command = command;
 
         res.stdout?.on('data', (data) => {
             response.stdout += data.toString();
