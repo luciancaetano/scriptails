@@ -42,3 +42,15 @@ export function getOptions() {
 export function getOption(name: string, defaultValue: string | boolean | null = null) {
     return new MixedType(get(getOptions(), name, defaultValue) || defaultValue);
 }
+
+/**
+ * Create an MixedType content
+ * @param {string} value
+ */
+export function mix(value: string) {
+    return new MixedType(value);
+}
+
+export function exit(code?: number) {
+    process.exit(code);
+}

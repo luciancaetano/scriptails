@@ -1,5 +1,6 @@
 import * as chalk from 'chalk';
 import * as program from 'commander';
+import * as globLib from 'glob';
 
 export * from './program';
 
@@ -44,15 +45,15 @@ export function logWithLabel(text: string, label: 'error' | 'info' | 'warning' |
         break;
 
     case 'info':
-        currLabel = chalk.bgRed.white.bold(' INFO ');
+        currLabel = chalk.bgBlue.white.bold(' INFO ');
         break;
 
     case 'warning':
-        currLabel = chalk.bgRed.white.bold(' WARNIGN ');
+        currLabel = chalk.bgYellow.white.bold(' WARNIGN ');
         break;
 
     case 'success':
-        currLabel = chalk.bgRed.white.bold(' SUCCESS ');
+        currLabel = chalk.bgGreen.white.bold(' SUCCESS ');
         break;
     default:
         currLabel = '';
@@ -69,3 +70,10 @@ export function logWithLabel(text: string, label: 'error' | 'info' | 'warning' |
 export function isPlatform(expected: 'aix' | 'darwin' | 'freebsd' | 'linux' | 'openbsd' | 'sunos' | 'win32') {
     return process.platform === expected;
 }
+
+/**
+ * Create an promisified glob see more in https://github.com/isaacs/node-glob
+ */
+export const glob = (pattern: string, options: globLib.IOptions) => new Promise<string[]>((resolve, reject) => {
+    globLib(pattern, options, (err, files) => (err === null ? resolve(files) : reject(err)));
+});

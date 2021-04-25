@@ -1,5 +1,5 @@
 const {
-    scriptStart, command, onAction,
+    initalize, command, onAction,
 } = require('../dist/index');
 
 command('sonic', () => {
@@ -26,4 +26,4 @@ command('knuckles', () => {
     });
 });
 
-scriptStart(process.argv, 'mocked-test', 'mock', {}, '1.0');
+initalize(process.argv, 'mocked-test', 'mock', {}, '1.0');

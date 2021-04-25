@@ -1,5 +1,5 @@
 const {
-    scriptStart, command, onAction, option, tails,
+    initalize, command, onAction, option, tails,
 } = require('..');
 
 command('log-label', () => {
@@ -23,4 +23,4 @@ command('log-lines', () => {
     });
 });
 
-scriptStart(process.argv, 'mocked-test', 'mock', {}, '1.0');
+initalize(process.argv, 'mocked-test', 'mock', {}, '1.0');

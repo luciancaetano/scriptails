@@ -23,17 +23,17 @@ You might want to use Scriptails if:
 Create a script folder (choose the name you want) and put an index(.ts or .js) file.
 
 ```javascript
-    import { scriptStart } from 'scriptails';
+    import { initalize } from 'scriptails';
     // Import scripts here
     import './my-command';
 
-    // You must import the scripts before call scriptStart
-    scriptStart(process.argv);
+    // You must import the scripts before call initalize
+    initalize(process.argv);
 ```
 
 ### Link scripts (Generate ".bin")
 Npm can link your binaries declared in `package.json` in bin attr,
-you can provide a custom command name and a path to your scriptStart file **(the file that runs scriptStart)**
+you can provide a custom command name and a path to your initalize file **(the file that runs initalize)**
 ```json
     ....
     "bin": {
@@ -42,7 +42,7 @@ you can provide a custom command name and a path to your scriptStart file **(the
   ...
 ```
 
-If your code is in **javascript** you just add `"#!/usr/bin/env node"` at start of your scriptStart file or `"#!/usr/bin/env ts-node-script"` if is typescript and install ts-node and typescript in your project.
+If your code is in **javascript** you just add `"#!/usr/bin/env node"` at start of your initalize file or `"#!/usr/bin/env ts-node-script"` if is typescript and install ts-node and typescript in your project.
 
 
 ## Scripts
@@ -77,7 +77,7 @@ command('build <platform>', () => {
 You can use pure javascript projects.
 ```javascript
 const {
-    scriptStart, command, option, tails, utils, onAction,
+    initalize, command, option, tails, utils, onAction,
 } = require('scriptails');
 
 command('build', () => {
@@ -89,7 +89,7 @@ command('build', () => {
     });
 });
 
-scriptStart(process.argv, 'simples-script');
+initalize(process.argv, 'simples-script');
 ```
 
 ## Recommended libraries
@@ -97,8 +97,3 @@ scriptStart(process.argv, 'simples-script');
 - **Inquirer.js**: A collection of common interactive command line user interfaces.
 - **cli-table**: Pretty unicode tables for the CLI with Node.JS.
 - **figlet.js**: A FIG Driver written in JavaScript which aims to fully implement the FIGfont spec.
-
-# Roadmap
-
-- Rename projet
-- implement tests

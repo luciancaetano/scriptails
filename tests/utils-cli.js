@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 const {
-    scriptStart, command, onAction, utils, option, tails,
+    initalize, command, onAction, utils, option, tails,
 } = require('..');
 
 command('list-files', () => {
@@ -24,4 +24,4 @@ command('random-options', () => {
     });
 });
 
-scriptStart(process.argv, 'mocked-test', 'mock', {}, '1.0');
+initalize(process.argv, 'mocked-test', 'mock', {}, '1.0');

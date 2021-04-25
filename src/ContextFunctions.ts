@@ -16,7 +16,7 @@ export class ScriptContextError extends Error {
  * @param description       string
  * @param argsDescription   Object
  */
-export async function scriptStart(argv: string[], name: string, description?: string, argsDescription?: {[argName: string]: string}, version?: string | null) {
+export async function initalize(argv: string[], name: string, description?: string, version?: string | null) {
     const promiseQueue = ScriptContext.getInstance().getPromiseQueue();
 
     for (const promiseFn of promiseQueue) {
@@ -29,7 +29,7 @@ export async function scriptStart(argv: string[], name: string, description?: st
 
     if (description) {
         commander
-            .parse(argv).description(description, argsDescription).name(name);
+            .parse(argv).name(name);
     } else {
         commander
             .parse(argv).name(name);

@@ -2,7 +2,7 @@ import * as shell from 'shelljs';
 import * as chalk from 'chalk';
 import * as prompts from 'prompts';
 import {
-    exitError, getOption, isPlatform, log, logLines, logWithLabel, getOptions,
+    exitError, getOption, isPlatform, log, logLines, logWithLabel, getOptions, mix, glob,
 } from './utils';
 import {
     shellExec, shellExecFile, ShellExecException, ShellExecFileOptions, ShellExecOptions,
@@ -17,6 +17,8 @@ export const tails = {
     logLines,
     logWithLabel,
     getOptions,
+    mix,
+    glob,
 };
 
 export const utils = {
