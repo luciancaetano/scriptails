@@ -1,9 +1,14 @@
+import { BackendAdapter } from '../backends/BackendAdapter';
 import { ICommandStack, ICommand } from './types';
 
 export default class CommandContextTree {
     private static instance: CommandContextTree;
 
+    private backendAdapter: BackendAdapter | null = null;
+
     private stack: ICommandStack;
+
+    private forcedSilent = false;
 
     /**
      * Get CommandContextTree Instance
@@ -59,5 +64,21 @@ export default class CommandContextTree {
 
     public getStack() {
         return this.stack;
+    }
+
+    public setBackendAdapter(backend: BackendAdapter) {
+        this.backendAdapter = backend;
+    }
+
+    public getBackendAdapter() {
+        return this.backendAdapter;
+    }
+
+    public setForcedSilent(silent: boolean) {
+        this.forcedSilent = silent;
+    }
+
+    public isForcedSilent() {
+        return this.forcedSilent;
     }
 }

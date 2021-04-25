@@ -31,8 +31,14 @@ export class CommanderJSBackend extends BackendAdapter {
     }
 
     private prebuild() {
-        //
-
         console.log(JSON.stringify(this.stack, null, '\t'));
+    }
+
+    getArgs() {
+        return [];
+    }
+
+    getOption() {
+        return '';
     }
 }

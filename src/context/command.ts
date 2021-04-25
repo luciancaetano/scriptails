@@ -2,7 +2,7 @@ import { CommandContextCallback } from './types';
 import CommandBuilder from './CommandBuilder';
 import CommandContextTree from './CommandContextTree';
 import { isPresent } from '../utils';
-import { CommanderJSBackend } from '../backends/commanderBackend';
+import { CommanderJSBackend } from '../backends/CommanderJSBackend';
 
 export async function command(name: string, cb: CommandContextCallback) {
     CommandContextTree.getInstance().addCommand({

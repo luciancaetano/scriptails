@@ -30,6 +30,7 @@ export interface ICommand {
     args: Record<string, ICommandArg>;
     options: Record<string, ICommandOption>;
     description?: string;
+    usage?: string;
     onAction?: ActionContextCallback;
 }
 

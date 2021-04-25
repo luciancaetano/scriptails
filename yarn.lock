@@ -4558,6 +4558,11 @@ node-releases@^1.1.71:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.71.tgz#cb1334b179896b1c89ecfdd4b725fb7bbdfc7dbb"
   integrity sha512-zR6HoT6LrLCRBwukmrVbHv0EpEQjksO6GmFcZQQuCAy139BEsoVKPYnf3jongYW83fAa1torLGYwxxky/p28sg==
 
+node-serialize@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/node-serialize/-/node-serialize-0.0.4.tgz#b73a49e1353306657103a5e49f7f05279ba97f7f"
+  integrity sha1-tzpJ4TUzBmVxA6Xkn38FJ5upf38=
+
 normalize-package-data@^2.3.0, normalize-package-data@^2.3.2, normalize-package-data@^2.3.4, normalize-package-data@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.5.0.tgz#e66db1838b200c1dfc233225d12cb36520e234a8"

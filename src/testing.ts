@@ -1,7 +1,6 @@
 import { command, defaultCommand, start } from './index';
 
 defaultCommand((c) => {
-    c.alias(['b']);
     c.description('description');
     c.option(['-D', '--debug'], null, 'build debug mode', false);
     c.option(['-P', '--project'], { title: 'projectName', required: true }, 'project name');
@@ -12,14 +11,14 @@ defaultCommand((c) => {
         const debug = action.getOption('debug').toBoolean();
         const myArgs = action.getArgs()[0].toString();
 
-        console.info(debug, myArgs);
+        action.logWithLabel('info', debug, myArgs);
 
         action.exitError('Error');
     });
 });
 
 command('build', (c) => {
-    c.alias(['b']);
+    c.aliases(['b']);
     c.description('description');
     c.option(['-D', '--debug'], null, 'build debug mode', false);
     c.option(['-P', '--project'], { title: 'projectName', required: true }, 'project name');
@@ -30,7 +29,7 @@ command('build', (c) => {
         const debug = action.getOption('debug').toBoolean();
         const myArgs = action.getArgs()[0].toString();
 
-        console.info(debug, myArgs);
+        action.logWithLabel('info', { debug, myArgs });
 
         action.exitError('Error');
     });

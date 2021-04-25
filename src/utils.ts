@@ -24,7 +24,5 @@ export function getOptionName(flags: string[]): string {
         return firstShortFlag.slice(1, firstShortFlag.length);
     }
 
-    console.info(`firstLongFlag: ${firstLongFlag} \nfirstShortFlag: ${firstShortFlag}\n `);
-
     throw new Error(`Invalid flags ['${flags.join('\', \'')}'], flags must start with "-" for short flags or "--" for long flags.`);
 }

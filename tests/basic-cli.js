@@ -1,29 +1,29 @@
 const {
-    initalize, command, onAction,
+    start, command,
 } = require('..');
 
-command('sonic', () => {
-    onAction(async () => {
+command('sonic', (c) => {
+    c.onAction(async () => {
         // do nothing
     });
 });
 
-command('amy', () => {
-    onAction(async () => {
+command('amy', (c) => {
+    c.onAction(async () => {
         // do nothing
     });
 });
 
-command('eggman', () => {
-    onAction(async () => {
+command('eggman', (c) => {
+    c.onAction(async () => {
         // do nothing
     });
 });
 
-command('knuckles', () => {
-    onAction(async () => {
+command('knuckles', (c) => {
+    c.onAction(async () => {
         // do nothing
     });
 });
 
-initalize(process.argv, 'mocked-test', 'mock', '1.0');
+start(process.argv, 'mocked-test', 'mock', '1.0');
