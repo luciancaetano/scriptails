@@ -1,7 +1,7 @@
 {
   "name": "scriptails",
-  "version": "2.4.0-0",
-  "description": "Write scripts like tests",
+  "version": "3.0.0",
+  "description": "Build simple CLIs in minutes",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -9,7 +9,7 @@
     "build:clear": "rimraf ./dist",
     "build:scripts": "tsc --declaration",
     "lint": "eslint src",
-    "test": "jest --no-cache --coverage",
+    "test": "jest --no-cache",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "release:patch": "standard-version --release-as patch",
