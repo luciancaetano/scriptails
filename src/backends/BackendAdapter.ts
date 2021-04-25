@@ -9,7 +9,7 @@ export abstract class BackendAdapter {
     /**
      * Check if --silent flag is set
      */
-    public abstract isSilent(): boolean ;
+    public abstract isSilent(): boolean;
 
     /**
      * Run commandline with argv

@@ -23,4 +23,8 @@ command('log-lines', (c) => {
     });
 });
 
-start(process.argv, 'mocked-test', 'mock', '1.0');
+start(process.argv, {
+    name: 'mocked-test',
+    description: 'cli description',
+    version: '1.0',
+});

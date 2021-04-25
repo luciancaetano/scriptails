@@ -78,7 +78,7 @@ export default class CommandBuilder {
     }
 
     /**
-     * Set the command usage example
+     * Manually assign a usage to the command
      *
      * @param text string
      */

@@ -6,9 +6,13 @@ export default class CommandContextTree {
 
     private backendAdapter: BackendAdapter | null = null;
 
+    private templatesPath: string;
+
     private stack: ICommandStack;
 
     private forcedSilent = false;
+
+    private customTemplateEngine: ((template: string, params: any) => string) | null = null;
 
     /**
      * Get CommandContextTree Instance
@@ -26,6 +30,7 @@ export default class CommandContextTree {
             commands: {},
             name: '',
         };
+        this.templatesPath = 'templates';
     }
 
     public setName(name: string) {
@@ -38,6 +43,10 @@ export default class CommandContextTree {
 
     public setVersion(version: string | undefined) {
         this.stack.version = version;
+    }
+
+    public setTemplatesPath(templatesPath: string) {
+        this.templatesPath = templatesPath;
     }
 
     public useSilent(silent = true) {
@@ -80,5 +89,17 @@ export default class CommandContextTree {
 
     public isForcedSilent() {
         return this.forcedSilent;
+    }
+
+    public getTemplatesPath() {
+        return this.templatesPath;
+    }
+
+    public setcustomTemplateEngine(customTemplateEngine: (template: string, params: any) => string) {
+        this.customTemplateEngine = customTemplateEngine;
+    }
+
+    public getCustomTemplateEngine() {
+        return this.customTemplateEngine;
     }
 }

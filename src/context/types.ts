@@ -7,14 +7,14 @@ export type ActionContextCallback = ((context: ActionContext) => void) | ((conte
 export interface ICommandArg {
     name: string;
     variadic?: boolean; // <arg...> | [arg...]
-    required?: boolean; // required: [arg] | optional: <arg>
+    required?: boolean; // required: <arg> | optional: [arg]
     description?: string;
 }
 
 export interface ICommandOptionValue {
     title: string;
     variadic?: boolean; // <arg...> | [arg...]
-    required?: boolean; // required: [arg] | optional: <arg>
+    required?: boolean; // required: <arg> | optional: [arg]
 }
 
 export interface ICommandOption {
