@@ -1,6 +1,6 @@
 {
   "name": "scriptails",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Write scripts like tests",
   "main": "dist/index.js",
   "types": "./types.d.ts",

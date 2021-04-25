@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/luciancaetano/scriptails/compare/v2.2.0...v2.3.0) (2021-04-25)
+
+
+### Bug Fixes
+
+* **bug:** :bug:  Fix wrong package entrypoint ([896e10d](https://github.com/luciancaetano/scriptails/commit/896e10de83dae6c91f148d58cc41c00fc7418f19))
+
 ## [2.2.0](https://github.com/luciancaetano/scriptails/compare/v2.1.0...v2.2.0) (2021-04-25)
 
 
