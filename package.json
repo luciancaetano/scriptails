@@ -2,7 +2,7 @@
   "name": "scriptails",
   "version": "2.2.0",
   "description": "Write scripts like tests",
-  "main": "dist/lib/index.js",
+  "main": "dist/index.js",
   "types": "./types.d.ts",
   "scripts": {
     "build": "yarn lint && yarn types && tsc",
