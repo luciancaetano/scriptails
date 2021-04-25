@@ -10,7 +10,6 @@ describe('Basic CLI testing', () => {
     it('should match cli version', async () => {
         const result = await cli('basic-cli.js', ['--version'], '.');
         expect(result.stdout).toMatchSnapshot();
-        console.info(result.command);
         expect(result.code).toBe(0);
     });
 

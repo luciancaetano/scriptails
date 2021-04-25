@@ -5,7 +5,7 @@ const {
 command('log-label', (c) => {
     c.option(['--input'], { title: 'input' }, 'input text', '');
     c.onAction(async (action) => {
-        action.logWithLabel(action.getOption('input').toString());
+        action.logWithLabel('error', action.getOption('input').toString());
     });
 });
 
