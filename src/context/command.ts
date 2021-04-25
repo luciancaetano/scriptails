@@ -1,27 +1,27 @@
 import { CommandContextCallback } from './types';
-import CommandBuilder from './CommandBuilder';
-import CommandContextTree from './CommandContextTree';
+import CommandContext from './CommandContext';
+import CommandInstanceHandler from './CommandInstanceHandler';
 import { isPresent } from '../utils';
 import { CommanderJSBackend } from '../backends/CommanderJSBackend';
 
 export async function command(name: string, cb: CommandContextCallback) {
-    CommandContextTree.getInstance().addCommand({
+    CommandInstanceHandler.getInstance().addCommand({
         name,
         aliases: [],
         args: {},
         options: {},
     });
-    await cb(new CommandBuilder(name));
+    await cb(new CommandContext(name));
 }
 
 export async function defaultCommand(cb: CommandContextCallback) {
-    CommandContextTree.getInstance().setDefaultCommand({
+    CommandInstanceHandler.getInstance().setDefaultCommand({
         name: '_default',
         aliases: [],
         args: {},
         options: {},
     });
-    await cb(new CommandBuilder(undefined));
+    await cb(new CommandContext(undefined));
 }
 
 export interface IStartOptions {
@@ -39,14 +39,14 @@ export function start(argv: string[], options: IStartOptions) {
     if (!isPresent(optionsSettings.name)) {
         throw new Error('Command name must be present');
     }
-    CommandContextTree.getInstance().setName(optionsSettings.name);
-    CommandContextTree.getInstance().setDescription(optionsSettings.description);
-    CommandContextTree.getInstance().setVersion(optionsSettings.version);
-    CommandContextTree.getInstance().useSilent(optionsSettings.useSilentOption);
+    CommandInstanceHandler.getInstance().setName(optionsSettings.name);
+    CommandInstanceHandler.getInstance().setDescription(optionsSettings.description);
+    CommandInstanceHandler.getInstance().setVersion(optionsSettings.version);
+    CommandInstanceHandler.getInstance().useSilent(optionsSettings.useSilentOption);
 
-    const defaultBackend = new CommanderJSBackend(CommandContextTree.getInstance().getStack());
+    const defaultBackend = new CommanderJSBackend(CommandInstanceHandler.getInstance().getStack());
 
-    CommandContextTree.getInstance().setBackendAdapter(defaultBackend);
+    CommandInstanceHandler.getInstance().setBackendAdapter(defaultBackend);
 
     defaultBackend.run(argv);
 }

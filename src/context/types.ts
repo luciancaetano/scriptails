@@ -1,7 +1,7 @@
 import ActionContext from './ActionContext';
-import CommandBuilder from './CommandBuilder';
+import CommandContext from './CommandContext';
 
-export type CommandContextCallback = ((builder: CommandBuilder) => void) | ((builder: CommandBuilder) => Promise<void>);
+export type CommandContextCallback = ((builder: CommandContext) => void) | ((builder: CommandContext) => Promise<void>);
 export type ActionContextCallback = ((context: ActionContext) => void) | ((context: ActionContext) => Promise<void>);
 
 export interface ICommandArg {

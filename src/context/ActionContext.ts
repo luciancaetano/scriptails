@@ -3,7 +3,7 @@ import * as globLib from 'glob';
 import { isError } from 'lodash/fp';
 import MixedType from '../mixed/MixedType';
 import { ChildProccessRunner } from '../runtime/childProcess';
-import CommandContextTree from './CommandContextTree';
+import CommandInstanceHandler from './CommandInstanceHandler';
 import { GetArgsFn, GetOptionFn } from '../backends/BackendAdapter';
 
 const { log: consoleLog } = console;
@@ -119,7 +119,7 @@ export default class ActionContext {
      * @returns {boolean}
      */
     public isSilent(): boolean {
-        return !!CommandContextTree.getInstance().getBackendAdapter()?.isSilent() || CommandContextTree.getInstance().isForcedSilent();
+        return !!CommandInstanceHandler.getInstance().getBackendAdapter()?.isSilent() || CommandInstanceHandler.getInstance().isForcedSilent();
     }
 
     /**
@@ -127,6 +127,6 @@ export default class ActionContext {
      * @param {boolean} silent
      */
     public setSilent(silent: boolean) {
-        CommandContextTree.getInstance().setForcedSilent(silent);
+        CommandInstanceHandler.getInstance().setForcedSilent(silent);
     }
 }
