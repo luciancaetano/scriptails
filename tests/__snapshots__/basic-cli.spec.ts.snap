@@ -6,12 +6,14 @@ exports[`Basic CLI testing should match cli version 1`] = `
 `;
 
 exports[`Basic CLI testing should run a cli with help 1`] = `
-"Usage: basic-cli [options] [command]
+"Usage: mocked-test [options] [command]
+
+cli description
 
 Options:
+  -V, --version   output the version number
   --silent        Disable log and debug information, including children
                   proccess stdout (default: false)
-  -V, --version   output the version number
   -h, --help      display help for command
 
 Commands:

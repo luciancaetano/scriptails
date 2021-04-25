@@ -1,30 +1,11 @@
 import * as shell from 'shelljs';
 import * as chalk from 'chalk';
 import * as prompts from 'prompts';
-import {
-    exitError, getOption, isPlatform, log, logLines, logWithLabel, getOptions, mix, glob,
-} from './utils';
-import {
-    shellExec, shellExecFile, ShellExecException, ShellExecFileOptions, ShellExecOptions,
-} from './shell';
+import ShellExecException from './ShellExecException';
 
-export const tails = {
-    exitError,
-    getOption,
-    isPlatform,
-    log,
-    ShellExecException,
-    logLines,
-    logWithLabel,
-    getOptions,
-    mix,
-    glob,
-};
-
-export const utils = {
-    exec: shellExec,
-    execFile: shellExecFile,
-};
+import {
+    ShellExecFileOptions, ShellExecOptions,
+} from './childProcess';
 
 export {
     ShellExecFileOptions,
@@ -32,4 +13,5 @@ export {
     shell,
     chalk,
     prompts,
+    ShellExecException,
 };

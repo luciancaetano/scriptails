@@ -1,26 +1,30 @@
 const {
-    initalize, command, onAction, option, tails,
+    start, command,
 } = require('..');
 
-command('log-label', () => {
-    option('--input <input>', 'input text', '');
-    onAction(async () => {
-        tails.logWithLabel(tails.getOption('input').toString());
+command('log-label', (c) => {
+    c.option(['--input'], { title: 'input' }, 'input text', '');
+    c.onAction(async (action) => {
+        action.logWithLabel(action.getOption('input').toString());
     });
 });
 
-command('log-text', () => {
-    option('--input <input>', 'input text', '');
-    onAction(async () => {
-        tails.log(tails.getOption('input').toString());
+command('log-text', (c) => {
+    c.option(['--input'], { title: 'input' }, 'input text', '');
+    c.onAction(async (action) => {
+        action.log(action.getOption('input').toString());
     });
 });
 
-command('log-lines', () => {
-    option('--input <input>', 'input text', '');
-    onAction(async () => {
-        tails.logLines([tails.getOption('input').toString()]);
+command('log-lines', (c) => {
+    c.option(['--input'], { title: 'input' }, 'input text', '');
+    c.onAction(async (action) => {
+        action.logLines([action.getOption('input').toString()]);
     });
 });
 
-initalize(process.argv, 'mocked-test', 'mock', '1.0');
+start(process.argv, {
+    name: 'mocked-test',
+    description: 'cli description',
+    version: '1.0',
+});

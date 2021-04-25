@@ -1,27 +1,28 @@
-/// <reference path="../types.d.ts" />
-const fs = require('fs');
-
 const {
-    initalize, command, onAction, utils, option, tails,
+    start, command,
 } = require('..');
 
-command('list-files', () => {
-    onAction(async () => {
-        utils.exec(`ls ${__dirname}/dir_files`);
+command('list-files', (c) => {
+    c.onAction(async (action) => {
+        action.childProcces.shellExec(`ls ${__dirname}/dir_files`);
     });
 });
 
-command('required-args <requiredArg>', () => {
-    onAction(async () => {
+command('required-args <requiredArg>', (c) => {
+    c.onAction(async () => {
         // do nothing
     });
 });
 
-command('random-options', () => {
-    option('--opt <opt>', 'option input', null);
-    onAction(async () => {
-        tails.log(tails.getOption('opt').toString());
+command('random-options', (c) => {
+    c.option(['--opt'], { title: 'opt' }, 'option input', null);
+    c.onAction(async (action) => {
+        action.log(action.getOption('opt').toString());
     });
 });
 
-initalize(process.argv, 'mocked-test', 'mock', '1.0');
+start(process.argv, {
+    name: 'mocked-test',
+    description: 'cli description',
+    version: '1.0',
+});

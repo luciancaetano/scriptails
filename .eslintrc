@@ -35,7 +35,9 @@
         "ts": "never"
       }
     ],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-useless-escape": "off",
+    "no-useless-constructor": "off"
   },
   "settings": {
     "import/resolver": {

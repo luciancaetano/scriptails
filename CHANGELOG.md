@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0-0](https://github.com/luciancaetano/scriptails/compare/v2.3.1...v2.4.0-0) (2021-04-25)
+
+
+### Features
+
+* **api design:** :sparkles:  Implemented new api library ([2567302](https://github.com/luciancaetano/scriptails/commit/256730202b77acd6549827cd732e303f36b717c2))
+* **backends:** :sparkles:  implemented commanderjs backend ([e7e72db](https://github.com/luciancaetano/scriptails/commit/e7e72dbc449f159309c31656437fadfc0f5604e5))
+* **front-end api:** :sparkles:  Updating back-end adapter api to support wider range of apis more easily ([51d6829](https://github.com/luciancaetano/scriptails/commit/51d68298bc6ce163fa650dc9a086cf3899cd0ee2))
+
+
+### Bug Fixes
+
+* **remove code:** :fire:  remove templateting idea code ([0197399](https://github.com/luciancaetano/scriptails/commit/0197399835440939ce7ef01ab9d3df1bd3452218))
+
 ### [2.3.1](https://github.com/luciancaetano/scriptails/compare/v2.3.0...v2.3.1) (2021-04-25)
 
 

@@ -1,99 +1,68 @@
 # Scriptails
 
+Scriptails is a framework for building a command line interface(CLI) using Node.js.Scriptails makes easy to build your own CLIs for your company, servicer, project.
+Yes, scriptails were created to be used both within projects and as a separate tool.
 
-![preview](https://media.giphy.com/media/L0SKuIdItTmOOiTlwg/giphy.gif "Prewview")
+**Read Docs Here:** https://scriptails-docs.vercel.app/
 
-**Attention: This is a package under development, some bugs can be found**
-
-Scriptails is a Simple script toolkit build on top of [commander.js](https://github.com/tj/commander.js) presenting a simple to use and practical api.
-
-**This project is under development and you may found bugs please report them to https://github.com/luciancaetano/scriptails/issues**
+**Found an issue? submit to us https://github.com/luciancaetano/scriptails/issues**
 
 ## Why use Scriptails?
+With scriptails you can easily build CLIs tools for your project, company or organization.
 You might want to use Scriptails if:
 - You need to build some advanced scripts to perform repetitive tasks on your project.
 - You have a complex deployment process and you need to simplify this.
 - You want to automate some things.
 
-## Quick Start
-    npm i -D scriptails
-    or
-    yarn add scriptails
+# Getting started
 
-Create a script folder (choose the name you want) and put an index(.ts or .js) file.
+Install scriptails using `yarn` or `npm`:
 
-```javascript
-    import { initalize } from 'scriptails';
-    // Import scripts here
-    import './my-command';
 
-    // You must import the scripts before call initalize
-    initalize(process.argv);
+```shell
+yarn add scriptails
+```
+Ou
+```shell
+yarn add scriptails
 ```
 
-### Link scripts (Generate ".bin")
-Npm can link your binaries declared in `package.json` in bin attr,
-you can provide a custom command name and a path to your initalize file **(the file that runs initalize)**
-```json
-    ....
-    "bin": {
-        "your-awesome-script-name": "./scripts/index.ts"
-    },
-  ...
+#### Let's start creating our index.js and our first command.
+
+```js title="index.js"
+const { start } = require('scriptails');
+
+require('./my-frist.command.js');
+
+
+start(process.argv, {
+    name: 'my-cli',
+    description: 'my cli description',
+    version: '1.0',
+});
 ```
+Note: In the 3rd line we import our command file, the scriptails the commands must be **imported before** the **start function**, if you import/require them later it is very likely that you will have problems running it.
 
-If your code is in **javascript** you just add `"#!/usr/bin/env node"` at start of your initalize file or `"#!/usr/bin/env ts-node-script"` if is typescript and install ts-node and typescript in your project.
+Now we will declare our first command within the `my-frist.command.js` file
 
+```js title="my-frist.command.js"
+const { command } = require('scriptails');
 
-## Scripts
-The structure of the scripts was inspired by the unit testing framework like mocha, see an example below
-
-```javascript
-import {
-    command, option, onAction, tails, utils,
-} from 'scriptails';
-command('build <platform>', () => {
-    option('--debug', 'Build debug apk', false);
-
-    onAction(async (platform) => {
-        const debug = tails.getOption('debug');
-
-        if (platform.toString() === 'android') {
-            if (debug) {
-                await utils.shellExec('./android/gradlew assembleDebug');
-                tails.log('Build Success');
-            } else {
-                await utils.shellExec('./android/gradlew assembleRelease');
-                tails.log('Build Success');
-            }
-        } else {
-            tails.exitError('Only android platform is supported now');
+command('first', (command) => {
+    command.option(['-D', '--debug'], null, 'Set debug mode', false);
+    command.onAction((ctx) => {
+        const isDebug = action.getOption('debug').toBoolean();
+        if(isDebug) {
+            ctx.log("Debug is On");
         }
-    });
-});
-```
-
-### Pure Javascript
-You can use pure javascript projects.
-```javascript
-const {
-    initalize, command, option, tails, utils, onAction,
-} = require('scriptails');
-
-command('build', () => {
-    option('--debug', 'debug', false);
-    onAction(async () => {
-        const debug = tails.getOption('debug').toBoolean() ? 'true' : false;
-
-        utils.shellExec(`echo ${debug}`);
-    });
+        ctx.logWithLabel("success", "Hello world, with label");
+    })
 });
 
-initalize(process.argv, 'simples-script');
 ```
 
-## Recommended libraries
+Finally run your new CLI using:
 
-- **Inquirer.js**: A collection of common interactive command line user interfaces.
-- **cli-table**: Pretty unicode tables for the CLI with Node.JS.
-- **figlet.js**: A FIG Driver written in JavaScript which aims to fully implement the FIGfont spec.
+```shell
+node index.js first
+```
