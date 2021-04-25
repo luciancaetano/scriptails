@@ -97,3 +97,8 @@ initalize(process.argv, 'simples-script');
 - **Inquirer.js**: A collection of common interactive command line user interfaces.
 - **cli-table**: Pretty unicode tables for the CLI with Node.JS.
 - **figlet.js**: A FIG Driver written in JavaScript which aims to fully implement the FIGfont spec.
+
+# Roadmap
+- ~~Implement basic tests using jest~~
+- Remove commander.js syntax dependency
+- Make project more stable
