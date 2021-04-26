@@ -44,8 +44,7 @@ export class ChildProccessRunner {
     public constructor(private ctx: ActionContext) {}
 
     /**
-     * Execute an command
-     * This is a simple helper runing more eazy with async functions
+     * This is a simple helper thats uses child_procces.exec and do some outputs to terminal like errors succes and realtime stdout. Note: This helper is very useful when you need to run third-party tools and want to show the user the progress / monitoring of the execution.
      * @param command string
      * @param opt ScriptExecOptions
      * @returns ShellExecResult
@@ -120,8 +119,7 @@ export class ChildProccessRunner {
     }
 
     /**
-     * Execute an file
-     * This is a simple helper runing more eazy with async functions
+     * This is a simple helper thats uses child_procces.execFile and do some outputs to terminal like errors succes and realtime stdout. Note: This helper is very useful when you need to run third-party tools and want to show the user the progress / monitoring of the execution.
      * @param fileName string
      * @param opt ScriptExecOptions
      * @returns ShellExecResult
