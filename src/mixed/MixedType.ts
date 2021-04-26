@@ -14,6 +14,13 @@ export default class MixedType {
      * Convert content to string
      */
     public toString() {
+        if (isArray(this.content)) {
+            return this.content.join((', '));
+        }
+
+        if (isBoolean((this.content))) {
+            return this.content === true ? 'true' : 'false';
+        }
         return toString(this.content || '');
     }
 
@@ -62,8 +69,8 @@ export default class MixedType {
      */
     public variadic() {
         if (isArray(this.content)) {
-            return map(this.content, (item) => new MixedType(String(item)));
+            return map(this.content, (item) => new MixedType(item));
         }
-        throw new Error(`${this.content} is not a valid number`);
+        throw new Error(`${this.content} is not a valid array`);
     }
 }

@@ -11,18 +11,22 @@ export default class MixedFile {
     /**
      * Check if File Exists
      */
-    public exists() {
+    public exists(): boolean {
         return fs.existsSync(this.fileName);
     }
 
     /**
-     * Read File Content
+     * Read file contents
+     * @param options
      */
     public readContent(options?: { encoding?: null; flag?: string; }) {
         return fs.readFileSync(this.fileName, options);
     }
 
-    /** Write to file */
+    /**
+     * Write content to file
+     * @param content
+     */
     public writeContet(content: string | NodeJS.ArrayBufferView) {
         return new Promise<void>((resolve, reject) => {
             fs.writeFile(this.fileName, content, (error) => {
@@ -36,7 +40,8 @@ export default class MixedFile {
     }
 
     /**
-     * Parse file contents as json to javascript object
+     * Parse file as json
+     * @param encoding
      */
     public toJson<T = any>(encoding: BufferEncoding = 'utf-8'): T {
         const content = this.readContent();
@@ -45,7 +50,8 @@ export default class MixedFile {
     }
 
     /**
-     * Parse file contents as yaml to javascript object
+     * Parse file as yaml
+     * @param encoding
      */
     public toYaml<T = any>(encoding: BufferEncoding = 'utf-8'): T {
         const content = this.readContent();

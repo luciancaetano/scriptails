@@ -10,13 +10,10 @@ export default class CommandContext {
     }
 
     /**
-     * Set aliases for command
-     *
-     * Only the first alias is shown in the auto-generated help.
+     * This member allows you to define some aliases for the command that owns the context.
      *
      * @param {string[]} aliases
      */
-
     public aliases(aliases: string[]) {
         CommandInstanceHandler.getInstance().updateCommand(this.name, (c) => ({
             ...c,
@@ -25,7 +22,7 @@ export default class CommandContext {
     }
 
     /**
-     * Set the command description.
+     * This member assigns a description to the command that owns the context.
      *
      * @param {string} description
      */
@@ -37,7 +34,7 @@ export default class CommandContext {
     }
 
     /**
-     * Define an argument command.
+     * This member define arguments for the command that owns the context.
      *
      * Ex: command.arg('<cmd> [env]')
      *
@@ -59,7 +56,7 @@ export default class CommandContext {
     }
 
     /**
-     * Define command option like --debug, -d
+     * This member allows definit options / flags to the command owner of the context.
      */
     public option(flags: string[], argument: ICommandOptionValue | null, description?: string, defaultValue?: string | boolean) {
         const optionName = getOptionName(flags);
@@ -78,7 +75,7 @@ export default class CommandContext {
     }
 
     /**
-     * Manually assign a usage to the command
+     * This member allows you to define a usage manually for the command that owns the context.
      *
      * @param text string
      */
@@ -90,7 +87,8 @@ export default class CommandContext {
     }
 
     /**
-     * Register callback `fn` for the command.
+     * This member allows defining a function to be executed when the command is
+     * invoked by the command line, note that this callback receives the context Action Context.
      *
      * @example
      *      command.onAction(async (ctx) => {
@@ -106,7 +104,7 @@ export default class CommandContext {
     }
 
     /**
-     * Get command name
+     * This function returns the name of the command ateo (for documentation purposes and consumption of the internal api).
      * @summary Internal and doc usage
      */
     public getName(): string | 'default' {

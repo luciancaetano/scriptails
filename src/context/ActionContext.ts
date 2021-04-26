@@ -13,19 +13,27 @@ export default class ActionContext {
 
     public constructor(private commandName: string | null, private getOptionFn: GetOptionFn, private getArgsFn: GetArgsFn) {}
 
+    /**
+     * This member finds and returns current command option.
+     * @param name
+     */
     public getOption(name: string) {
         return new MixedType(this.getOptionFn(name));
     }
 
+    /**
+     * This member returns current command arguments.
+     * @return {MixedType[]}
+     */
     public getArgs(): MixedType[] {
         return this.getArgsFn(this.commandName).map((arg) => new MixedType(arg)) || [];
     }
 
     /**
-     * Print an error and exit with specified code
-     *
-     * @param {string|Error} message
-     * @param {boolean} label
+     * This member print's an error and exit with specified code.
+     * @param error
+     * @param exitCode
+     * @param label
      */
     public exitError(error: string | Error, exitCode = 1, label = true) {
         consoleLog(`${label ? `${chalk.bgRed.white.bold(' ERROR ')}${chalk.red.bold(':')} ` : ''}${chalk.red.bold(isError(error) ? error.message : error)}`);
@@ -49,9 +57,9 @@ export default class ActionContext {
     }
 
     /**
-     * Type in the terminal
-     * @note disabled when --silent flag is present
-     * @param {...any[]}...args
+     * Write a message in the terminal, a wrapper for console.log
+     * @note cant run when the --silent flag is set to true
+     * @param args
      */
     public log(...args: any[]) {
         if (this.isSilent()) return;
@@ -59,8 +67,8 @@ export default class ActionContext {
     }
 
     /**
-     * Write in the terminal each element of the array on a line
-     * @note disabled when --silent flag is present
+     * Write in the terminal each element of the array on a line.
+     * @note cant run when the --silent flag is set to true
      * @param {string[]} lines
      */
     public logLines(lines: string[]) {
@@ -70,9 +78,9 @@ export default class ActionContext {
 
     /**
      * Write in the terminal with a label as a prefix, this label is stylized and formatted according to its context.
-     * @note disabled when --silent flag is present
-     * @param {string} text
-     * @param {'error'|'info'|'warning'|'success'} label
+     * @note cant run when the --silent flag is set to true
+     * @param label
+     * @param args
      */
     public logWithLabel(label: 'error' | 'info' | 'warning' | 'success', ...args: any[]) {
         if (this.isSilent()) return;
@@ -115,7 +123,7 @@ export default class ActionContext {
     }
 
     /**
-     * Return's true when flag --silent is present
+     * Check if CLI is running on silent mode
      * @returns {boolean}
      */
     public isSilent(): boolean {
