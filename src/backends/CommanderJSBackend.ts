@@ -92,6 +92,8 @@ export class CommanderJSBackend extends BackendAdapter {
                 }
 
                 cmd.option(`${option.flags.join(', ')} ${argument}`, option.description, option.defaultValue);
+            } else {
+                cmd.option(`${option.flags.join(', ')}`, option.description, option.defaultValue);
             }
         });
 
