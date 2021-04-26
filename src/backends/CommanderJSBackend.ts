@@ -134,7 +134,7 @@ export class CommanderJSBackend extends BackendAdapter {
         const getArgs = () => args;
         const options = cmd.opts();
         const getOption = (name: string) => get(options, name, null);
-        const actionCtx = new ActionContext(command.name, getOption, getArgs);
+        const actionCtx = new ActionContext(command.name, getOption, getArgs, () => cmd.opts());
 
         if (command.onAction) {
             await command.onAction(actionCtx);

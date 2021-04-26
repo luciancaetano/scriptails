@@ -1,5 +1,6 @@
 import { ICommandStack } from '../context/types';
 
+export type GetOptionsFn = () => any;
 export type GetOptionFn = (name: string) => string;
 export type GetArgsFn = (commandName: string | null) => string[];
 

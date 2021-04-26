@@ -4,14 +4,14 @@ import { isError } from 'lodash/fp';
 import MixedType from '../mixed/MixedType';
 import { ChildProccessRunner } from '../runtime/childProcess';
 import CommandInstanceHandler from './CommandInstanceHandler';
-import { GetArgsFn, GetOptionFn } from '../backends/BackendAdapter';
+import { GetArgsFn, GetOptionFn, GetOptionsFn } from '../backends/BackendAdapter';
 
 const { log: consoleLog } = console;
 
 export default class ActionContext {
     public childProcces = new ChildProccessRunner(this);
 
-    public constructor(private commandName: string | null, private getOptionFn: GetOptionFn, private getArgsFn: GetArgsFn) {}
+    public constructor(private commandName: string | null, private getOptionFn: GetOptionFn, private getArgsFn: GetArgsFn, private getOptionsFn: GetOptionsFn) {}
 
     /**
      * This member finds and returns current command option.
@@ -19,6 +19,10 @@ export default class ActionContext {
      */
     public getOption(name: string) {
         return new MixedType(this.getOptionFn(name));
+    }
+
+    public getOptions() {
+        return this.getOptionsFn();
     }
 
     /**
