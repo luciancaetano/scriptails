@@ -26,9 +26,9 @@ Install scriptails using `yarn` or `npm`:
 ```shell
 yarn add scriptails
 ```
-Ou
+Or
 ```shell
-yarn add scriptails
+npm install scriptails
 ```
 
 #### Let's start creating our index.js and our first command.
