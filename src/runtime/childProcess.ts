@@ -12,23 +12,23 @@ export interface ShellExecResult {
 interface ShellExecExtendedOptions {
     log? : {
         /**
-         * Show stdout on terminal
+         * Show stdout on terminal default: true
          */
         stdout: boolean;
         /**
-         * Show stderr on terminal
+         * Show stderr on terminal default: true
          */
         stderr: boolean;
         /**
-         * Log proccess start
+         * Show in terminal proccess start default: true
          */
         start: boolean;
         /**
-         * Log process end
+         * Show in terminal process end default: true
          */
         end: boolean;
         /**
-         * Show error log
+         * Show in terminal error log default: true
          */
         error: boolean;
     } | boolean;
