@@ -8,12 +8,10 @@
 
 name: Npm Deploy
 
-on: 
-  workflow_dispatch:
-    inputs:
-      notes:
-        description: 'Notes'
-    
+on:
+  push:
+    branches:
+      - main
 jobs:
   publish:
     runs-on: ubuntu-latest
