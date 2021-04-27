@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.4](https://github.com/luciancaetano/scriptails/compare/v3.1.2...v3.1.4) (2021-04-27)
+
+
+### Features
+
+* **idea:** :sparkles:  Anoted idea of class compiller ([321c772](https://github.com/luciancaetano/scriptails/commit/321c7725c4a6dffb84adfc441fb1a17fee5352aa))
+
 ### [3.1.3](https://github.com/luciancaetano/scriptails/compare/v3.0.3...v3.1.3) (2021-04-27)
 
 
