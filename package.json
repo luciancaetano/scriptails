@@ -19,7 +19,15 @@
     "script",
     "ci",
     "continuous",
-    "integration"
+    "integration",
+    "commander",
+    "command",
+    "option",
+    "parser",
+    "cli",
+    "argument",
+    "args",
+    "argv"
   ],
   "repository": {
     "type": "git",
