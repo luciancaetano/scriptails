@@ -24,8 +24,3 @@ Commands:
   help [command]  display help for command
 "
 `;
-
-exports[`Basic CLI testing should run a cli with help and match expected commands 1`] = `
-"1.0
-"
-`;
