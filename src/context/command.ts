@@ -2,7 +2,7 @@ import { CommandContextCallback } from './types';
 import CommandContext from './CommandContext';
 import CommandInstanceHandler from './CommandInstanceHandler';
 import { isPresent } from '../utils';
-import { CommanderJSBackend } from '../backends/CommanderJSBackend';
+import { InternalBackend } from '../backends/InternalBackend';
 
 export async function command(name: string, cb: CommandContextCallback) {
     CommandInstanceHandler.getInstance().addCommand({
@@ -44,7 +44,7 @@ export function start(argv: string[], options: IStartOptions) {
     CommandInstanceHandler.getInstance().setVersion(optionsSettings.version);
     CommandInstanceHandler.getInstance().useSilent(optionsSettings.useSilentOption);
 
-    const defaultBackend = new CommanderJSBackend(CommandInstanceHandler.getInstance().getStack());
+    const defaultBackend = new InternalBackend(CommandInstanceHandler.getInstance().getStack());
 
     CommandInstanceHandler.getInstance().setBackendAdapter(defaultBackend);
 

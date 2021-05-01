@@ -34,7 +34,7 @@ export interface ICommand {
     onAction?: ActionContextCallback;
 }
 
-export interface ICommandStack {
+export interface ICommandSchema {
     name: string;
     version?: string | undefined;
     description?: string | undefined;

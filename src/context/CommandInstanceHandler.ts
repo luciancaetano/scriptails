@@ -1,12 +1,12 @@
 import { BackendAdapter } from '../backends/BackendAdapter';
-import { ICommandStack, ICommand } from './types';
+import { ICommandSchema, ICommand } from './types';
 
 export default class CommandInstanceHandler {
     private static instance: CommandInstanceHandler;
 
     private backendAdapter: BackendAdapter | null = null;
 
-    private stack: ICommandStack;
+    private stack: ICommandSchema;
 
     private forcedSilent = false;
 

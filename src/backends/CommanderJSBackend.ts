@@ -1,7 +1,7 @@
 import * as program from 'commander';
 import { forEach, get, map } from 'lodash';
 import ActionContext from '../context/ActionContext';
-import { ICommand, ICommandArg, ICommandStack } from '../context/types';
+import { ICommand, ICommandArg, ICommandSchema } from '../context/types';
 import { BackendAdapter } from './BackendAdapter';
 
 export class CommanderJSBackend extends BackendAdapter {
@@ -13,7 +13,7 @@ export class CommanderJSBackend extends BackendAdapter {
 
     private argsDescriptions: Record<string, any> = {};
 
-    constructor(stack: ICommandStack) {
+    constructor(stack: ICommandSchema) {
         super(stack);
         program.name(stack.name);
 
