@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/luciancaetano/scriptails/compare/v3.3.0-0...v3.3.0) (2021-05-17)
+
 ## [3.3.0-0](https://github.com/luciancaetano/scriptails/compare/v3.1.4...v3.3.0-0) (2021-05-17)
 
 
