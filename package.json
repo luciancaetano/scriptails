@@ -1,6 +1,6 @@
 {
   "name": "scriptails",
-  "version": "3.1.4",
+  "version": "3.2.2",
   "description": "Build simple CLIs in minutes",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -41,7 +41,6 @@
   "devDependencies": {
     "@types/chalk": "^2.2.0",
     "@types/commander": "^2.12.2",
-    "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.169",
     "@types/node": "^15.3.0",
     "@types/prompts": "^2.0.11",
@@ -49,6 +48,8 @@
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
     "commitizen": "^4.2.4",
+    "@types/glob": "^7.1.3",
+    "@types/jest": "^26.0.23",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -64,17 +65,13 @@
     "standard-version": "^9.3.0",
     "ts-jest": "^26.5.6",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.4",
-    "@types/yaml": "^1.9.7"
+    "typescript": "^4.2.4"
   },
   "dependencies": {
     "chalk": "^4.1.1",
     "commander": "^7.2.0",
     "glob": "^7.1.7",
     "lodash": "^4.17.21",
-    "pretty-error": "^3.0.3",
-    "prompts": "^2.4.1",
-    "shelljs": "^0.8.4",
     "tslib": "^2.2.0",
     "yaml": "^1.10.2"
   },

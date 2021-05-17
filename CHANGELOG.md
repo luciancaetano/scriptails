@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.2](https://github.com/luciancaetano/scriptails/compare/v3.2.1...v3.2.2) (2021-04-29)
+
+### [3.2.1](https://github.com/luciancaetano/scriptails/compare/v3.2.0...v3.2.1) (2021-04-29)
+
+
+### Features
+
+* **deps:** :arrow_up:  upgrading dependencies and changing to npm ([1e2288d](https://github.com/luciancaetano/scriptails/commit/1e2288da7f3a4b56148525e0374053ff415235d2))
+
+## [3.2.0](https://github.com/luciancaetano/scriptails/compare/v3.1.3...v3.2.0) (2021-04-29)
+
+
+### Features
+
+* **idea:** :sparkles:  Anoted idea of class compiller ([321c772](https://github.com/luciancaetano/scriptails/commit/321c7725c4a6dffb84adfc441fb1a17fee5352aa))
+
 ### [3.1.4](https://github.com/luciancaetano/scriptails/compare/v3.1.2...v3.1.4) (2021-04-27)
 
 
