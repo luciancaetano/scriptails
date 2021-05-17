@@ -1,6 +1,6 @@
 {
   "name": "scriptails",
-  "version": "3.2.2",
+  "version": "3.3.0-0",
   "description": "Build simple CLIs in minutes",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
